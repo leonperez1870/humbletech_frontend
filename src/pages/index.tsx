@@ -3,6 +3,7 @@ import { HeadFC, PageProps, graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Header from "../components/header/header"
 import Footer from "../components/footer/footer"
+import Hero from "../components/hero/hero"
 import 'tailwindcss/tailwind.css'
 import '../styles/main.css'
 
@@ -55,16 +56,13 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <main>
       <Header siteTitle="The Humble Tech" />
-
-      <div className="Hero h-screen flex items-center justify-center bg-cover bg-center relative">
-        <GatsbyImage image={heroBgImage} alt="Background image for the hero section" className="absolute inset-0 w-full h-full z-0" style={{filter: 'brightness(0.8)'}} />
-        <div className="Hero-content text-center text-white relative">
-          <h1 className="text-5xl mb-4">{heroHeading}</h1>
-          <h2 className="text-2xl mb-8">{heroSubHeading}</h2>
-          <a href={ctaUrl} className="bg-blue-500 text-white px-6 py-3 rounded-lg">{ctaText}</a>
-        </div>
-      </div>
-
+      <Hero
+        backgroundImageDesktop={heroBgImage}
+        heroHeading={heroHeading}
+        heroSubHeading={heroSubHeading}
+        ctaText={ctaText}
+        ctaUrl={ctaUrl}
+      />
       <section aria-label="Information section">
         <div className="flex items-center justify-center">
           <GatsbyImage image={secImage} alt="Section Image" className="w-1/2"/>
