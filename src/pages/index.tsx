@@ -4,6 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Header from "../components/header/header"
 import Footer from "../components/footer/footer"
 import Hero from "../components/hero/hero"
+import ImgWithText from "../components/image-w-text/image-w-text"
 import 'tailwindcss/tailwind.css'
 import '../styles/main.css'
 
@@ -25,6 +26,7 @@ const IndexPage: React.FC<PageProps> = () => {
               gatsbyImageData(layout: CONSTRAINED, width: 600)
             }
             sectionSubHeading
+            sectionImageOnRight
             partnersHeading
             partnersSubHeading
             partnersLogos {
@@ -45,6 +47,7 @@ const IndexPage: React.FC<PageProps> = () => {
     sectionHeading,
     sectionSubHeading,
     sectionImage,
+    sectionImageOnRight,
     partnersHeading,
     partnersSubHeading,
     partnersLogos
@@ -58,21 +61,17 @@ const IndexPage: React.FC<PageProps> = () => {
       <Header siteTitle="The Humble Tech" />
       <Hero
         backgroundImageDesktop={heroBgImage}
-        heroHeading={heroHeading}
-        heroSubHeading={heroSubHeading}
+        heading={heroHeading}
+        subHeading={heroSubHeading}
         ctaText={ctaText}
         ctaUrl={ctaUrl}
       />
-      <section aria-label="Information section">
-        <div className="flex items-center justify-center">
-          <GatsbyImage image={secImage} alt="Section Image" className="w-1/2"/>
-          <div className="text-center text-black w-1/2">
-            <h1 className="text-3xl mb-4">{sectionHeading}</h1>
-            <h2 className="text-xl">{sectionSubHeading}</h2>
-          </div>
-        </div>
-      </section>
-
+      <ImgWithText
+        secImage={secImage}
+        sectionHeading={sectionHeading}
+        sectionSubheading={sectionSubHeading}
+        imageOnRight={sectionImageOnRight}
+      />
       <section className="py-0" aria-label="Our Partnerships">
         <div className="w-full p-0 relative">
           <div className="flex justify-between items-center">
