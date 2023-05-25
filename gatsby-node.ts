@@ -35,6 +35,14 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
             };
             sectionSubHeading?: string;
             spaceId?: string;
+            // For a "Faq" type
+            title: string;
+            faqItems?: {
+              question: string;
+              answer: {
+                answer: string;
+              };
+            }
           }[];
         };
       }[];
@@ -69,6 +77,15 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
                 }
                 sectionSubHeading
                 spaceId
+              }
+              ... on ContentfulFaqSection {
+                title
+                faqItems {
+                  question
+                  answer {
+                    answer
+                  }
+                }
               }
             }
           }
