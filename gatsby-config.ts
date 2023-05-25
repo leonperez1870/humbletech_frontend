@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
+require('dotenv').config()
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `The Humble Tech`,
@@ -13,8 +15,8 @@ const config: GatsbyConfig = {
   plugins: [{
     resolve: 'gatsby-source-contentful',
     options: {
-      "accessToken": "wqor0bWJmTT-TBLtpHmaor5ruA4R8bIuGL3Ty0DaJr0",
-      "spaceId": "ww3dux37o6of"
+      "accessToken": process.env.CONTENTFUL_ACCESS_TOKEN,
+      "spaceId": process.env.CONTENTFUL_SPACE_ID
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-postcss", {
     resolve: 'gatsby-source-filesystem',
