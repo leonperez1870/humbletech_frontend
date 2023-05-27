@@ -3,7 +3,8 @@ import { graphql } from "gatsby";
 import Hero from "../components/hero/hero";
 import ImgWithText from "../components/image-w-text/image-w-text";
 import Faq from "../components/faq-section/faq";
-import Layout from "../components/layout";
+import ContactForm from "../components/contact-form/contact-form";
+import Layout from "./layout";
 
 interface PageContext {
   id: string;
@@ -19,6 +20,7 @@ const COMPONENT_MAP = {
   ContentfulHero: Hero,
   ContentfulImageWithText: ImgWithText,
   ContentfulFaqSection: Faq,
+  ContentfulContactUsSection: ContactForm,
 };
 
 const Page: React.FC<PageProps> = ({ pageContext }) => {
@@ -30,7 +32,7 @@ const Page: React.FC<PageProps> = ({ pageContext }) => {
         {sections.map((section) => {
           // Get the component for this __typename
           const Component = COMPONENT_MAP[section.__typename];
-
+          
           if (!Component) {
             // If no component is found, render nothing
             return null;
