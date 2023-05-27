@@ -5709,7 +5709,7 @@ gatsby-sharp@^1.10.0:
   dependencies:
     sharp "^0.32.1"
 
-gatsby-source-contentful@^8.9.1:
+gatsby-source-contentful@^8.10.0:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-source-contentful/-/gatsby-source-contentful-8.10.0.tgz#d014463a79c2918b3d4333bd0fac6143e2eba177"
   integrity sha512-Rl5tO0zLxvn7/PzUov0X33AOBaA63lalWgyBsQLP68y36KhsEqOtB5UqA4qHa/EXV9V5KxxOFza1qYTntHVMRw==
@@ -5733,7 +5733,7 @@ gatsby-source-contentful@^8.9.1:
     semver "^7.5.0"
     url "^0.11.0"
 
-gatsby-source-filesystem@^5.10.0, gatsby-source-filesystem@^5.9.0:
+gatsby-source-filesystem@^5.10.0:
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-5.10.0.tgz#9b009a42ea1c202c7aa3dbd59d9042c2a6512814"
   integrity sha512-pTcqFvngUqap4NJfzG9VMmJ4T5TTf/WsMVTVORw18kprXZBchioLu0m5vVb9Tm7/MW7XPXvKJPZQkw+/otmVYw==
@@ -5766,7 +5766,7 @@ gatsby-telemetry@^4.10.0:
     lodash "^4.17.21"
     node-fetch "^2.6.9"
 
-gatsby-transformer-sharp@^5.9.0:
+gatsby-transformer-sharp@^5.10.0:
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-5.10.0.tgz#2c0923b919c86fa8dd86b2e9c71b14f697a1bf8e"
   integrity sha512-skV7QGP8LTVgItZFNHq+JH1YP5F39XKeDHfTWg5QMcV/qnwH9aGzhQxT/LY9liVzYi/XbAn51/pB1v0FSLoyOA==
