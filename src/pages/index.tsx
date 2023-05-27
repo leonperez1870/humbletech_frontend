@@ -1,111 +1,77 @@
-import * as React from "react"
-import { HeadFC, PageProps, graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import Header from "../components/header/header"
-import Footer from "../components/footer/footer"
-import Hero from "../components/hero/hero"
-import ImgWithText from "../components/image-w-text/image-w-text"
-import 'tailwindcss/tailwind.css'
-import '../styles/main.css'
+// src/pages/index.tsx
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import Layout from "../templates/layout";
+import Hero from "../components/hero/hero";
+import ImgWithText from "../components/image-w-text/image-w-text";
+import Faq from "../components/faq-section/faq";
+import ContactForm from "../components/contact-form/contact-form";
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage = () => {
   const data = useStaticQuery(graphql`
-    query HomepageQuery {
-      allContentfulHomepage {
-        edges {
-          node {
+    query HomePageQuery {
+      contentfulPages(slug: { eq: "home" }) {
+        title
+        sections {
+          __typename
+          ... on ContentfulHero {
+            id
+            heading
+            subHeading
             backgroundImageDesktop {
-              gatsbyImageData(layout: CONSTRAINED, width: 1920)
-            }
-            ctaText
-            ctaUrl
-            heroHeading
-            heroSubHeading
-            sectionHeading
-            sectionImage {
-              gatsbyImageData(layout: CONSTRAINED, width: 600)
-            }
-            sectionSubHeading
-            sectionImageOnRight
-            partnersHeading
-            partnersSubHeading
-            partnersLogos {
               gatsbyImageData
+            }
+            backgroundImageMobile {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulImageWithText {
+            id
+            sectionHeading
+            sectionSubHeading
+            imageOnRight
+            sectionImage {
+              gatsbyImageData
+            }
+          }
+          ... on ContentfulFaqSection {
+            title
+            faqItems {
+              question
+              answer {
+                answer
+              }
+            }
+          }
+          ... on ContentfulContactUsSection {
+            contactSectionHeading
+            contactSectionSubHeading {
+              contactSectionSubHeading
             }
           }
         }
       }
     }
-  `)
-
-  const {
-    backgroundImageDesktop, 
-    ctaText,
-    ctaUrl,
-    heroHeading,
-    heroSubHeading,
-    sectionHeading,
-    sectionSubHeading,
-    sectionImage,
-    sectionImageOnRight,
-    partnersHeading,
-    partnersSubHeading,
-    partnersLogos
-  } = data.allContentfulHomepage.edges[0].node;
-
-  const heroBgImage = getImage(backgroundImageDesktop);
-  const secImage = getImage(sectionImage);
+  `);
 
   return (
-    <main>
-      <Header siteTitle="The Humble Tech" />
-      <Hero
-        backgroundImageDesktop={heroBgImage}
-        heading={heroHeading}
-        subHeading={heroSubHeading}
-        ctaText={ctaText}
-        ctaUrl={ctaUrl}
-      />
-      <ImgWithText
-        secImage={secImage}
-        sectionHeading={sectionHeading}
-        sectionSubheading={sectionSubHeading}
-        imageOnRight={sectionImageOnRight}
-      />
-      <section className="py-0" aria-label="Our Partnerships">
-        <div className="w-full p-0 relative">
-          <div className="flex justify-between items-center">
-            <div className="lg:w-5/12 w-full flex justify-center items-center text-center">
-              <div className="section-logos__content rte">
-                <h2 className="mb-5">{partnersHeading}</h2>
-                <p className="mb-7">{partnersSubHeading}</p>
-              </div>
-            </div>
-            <div className="lg:w-7/12 w-full">
-              <div className="section-logos__list ml-0">
-                <div className="flex flex-wrap ml-0">
-                  {partnersLogos.map((logo: any, index: number) => {
-                    const img = getImage(logo);
-                    return (
-                      <div key={index} className="w-1/2 md:w-1/3">
-                        <a href="" className="section-logos__item">
-                          <GatsbyImage image={img} alt="" className="section-logos__icon" />
-                        </a>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-      <Footer />
-    </main>
+    <Layout>
+      {data.contentfulPages.sections.map(section => {
+        switch (section.__typename) {
+          case 'ContentfulHero':
+            return <Hero key={section.id} {...section} />
+          case 'ContentfulImageWithText':
+            return <ImgWithText key={section.id} {...section} />
+          case 'ContentfulFaqSection':
+            return <Faq key={section.id} {...section} />
+          case 'ContentfulContactUsSection':
+            return <ContactForm key={section.id} {...section} />
+          default:
+            return null;
+        }
+      })}
+    </Layout>
   )
 }
 
-export default IndexPage
-
-export const Head: HeadFC = () => <title>Home Page</title>
+export default IndexPage;
