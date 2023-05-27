@@ -1,5 +1,4 @@
 // gatsby-node.ts
-
 import { GatsbyNode } from 'gatsby';
 import path from 'path';
 
@@ -41,8 +40,24 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
               question: string;
               answer: {
                 answer: string;
+              } | {
+                answer: {
+                  childMarkdownRemark: {
+                    html: string;
+                  }
+                }
               };
-            }
+            };
+            contactSectionHeading?: string;
+            contactSectionSubHeading?: {
+              contactSectionSubHeading: string;
+            } | {
+              contactSectionSubHeading: {
+                childMarkdownRemark: {
+                  html: string;
+                }
+              }
+            };
           }[];
         };
       }[];
@@ -85,6 +100,12 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
                   answer {
                     answer
                   }
+                }
+              }
+              ... on ContentfulContactUsSection {
+                contactSectionHeading
+                contactSectionSubHeading {
+                  contactSectionSubHeading
                 }
               }
             }
