@@ -1,4 +1,3 @@
-// src/pages/index.tsx
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Layout from "../templates/layout";
@@ -35,6 +34,7 @@ const IndexPage = () => {
             }
           }
           ... on ContentfulFaqSection {
+            id
             title
             faqItems {
               question
@@ -44,6 +44,7 @@ const IndexPage = () => {
             }
           }
           ... on ContentfulContactUsSection {
+            id
             contactSectionHeading
             contactSectionSubHeading {
               contactSectionSubHeading
@@ -56,7 +57,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      {data.contentfulPages.sections.map(section => {
+      {data.contentfulPages.sections.map((section: any) => {
         switch (section.__typename) {
           case 'ContentfulHero':
             return <Hero key={section.id} {...section} />
