@@ -1,68 +1,12 @@
 // gatsby-node.ts
-import { GatsbyNode } from 'gatsby';
-import path from 'path';
+import path from "path";
+import { CreatePagesArgs } from "gatsby";
+import { resContentfulType } from "./src/types";
 
-export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
-  const { createPage } = actions;
-
-  // Query all Contentful page data
-  const result = await graphql<{
-    allContentfulPages: {
-      edges: {
-        node: {
-          id: string;
-          title: string;
-          slug: string;
-          sections: {
-            __typename: string;
-            id: string;
-            // Include other fields from the Section types as necessary
-            // For a "Hero" type
-            backgroundImageDesktop?: {
-              gatsbyImageData: any;
-            };
-            backgroundImageMobile?: {
-              gatsbyImageData: any;
-            };
-            heading?: string;
-            subHeading?: string;
-            // For a "ImageWithText" type
-            imageOnRight?: boolean;
-            sectionHeading?: string;
-            sectionImage?: {
-              gatsbyImageData: any;
-            };
-            sectionSubHeading?: string;
-            spaceId?: string;
-            // For a "Faq" type
-            title: string;
-            faqItems?: {
-              question: string;
-              answer: {
-                answer: string;
-              } | {
-                answer: {
-                  childMarkdownRemark: {
-                    html: string;
-                  }
-                }
-              };
-            };
-            contactSectionHeading?: string;
-            contactSectionSubHeading?: {
-              contactSectionSubHeading: string;
-            } | {
-              contactSectionSubHeading: {
-                childMarkdownRemark: {
-                  html: string;
-                }
-              }
-            };
-          }[];
-        };
-      }[];
-    };
-  }>(`
+const createContentfulPages = async (args: CreatePagesArgs) => {
+  const { actions, graphql } = args;
+  const pageTemplate = path.resolve(`./src/templates/page.tsx`);
+  const res: resContentfulType = await graphql(`
     query ContentfulPagesQuery {
       allContentfulPages {
         edges {
@@ -115,20 +59,26 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     }
   `);
 
-  if (result.errors) {
-    throw result.errors;
-  }
+  const nodes = res.data?.allContentfulPages.edges;
+  const count = nodes.length;
 
-  // Create pages for each Contentful page
-  result.data?.allContentfulPages.edges.forEach(({ node }) => {
-    createPage({
-      path: `/${node.slug}`,
-      component: path.resolve(`./src/templates/page.tsx`),
-      context: {
-        id: node.id,
-        title: node.title,
-        sections: node.sections,
-      },
-    });
-  });
+  for (let i = 0; i < count; i++) {
+    const { node } = nodes[i];
+    if (node) {
+      const { id, title, sections, slug } = node;
+      actions.createPage({
+        path: `/${slug}`,
+        component: pageTemplate,
+        context: {
+          id: id,
+          title: title,
+          sections: sections,
+        }
+      });
+    }
+  }
+};
+
+exports.createPages = async (params: CreatePagesArgs) => {
+  await Promise.all([createContentfulPages(params)]);
 };
