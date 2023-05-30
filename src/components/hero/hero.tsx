@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 
-interface HeroProps {
+export interface HeroProps {
   backgroundImageDesktop: IGatsbyImageData;
   backgroundImageMobile: IGatsbyImageData;
   heading: string;

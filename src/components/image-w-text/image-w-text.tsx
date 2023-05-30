@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 
-interface ImgWithTextProps {
+export interface ImgWithTextProps {
   sectionImage: IGatsbyImageData;
   sectionHeading: string;
   sectionSubHeading: string;

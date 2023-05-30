@@ -7,7 +7,7 @@ interface FaqItem {
   };
 }
 
-interface FaqProps {
+export interface FaqProps {
   title: string;
   faqItems: FaqItem[];
 }

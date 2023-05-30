@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-interface ContactUsProps {
+export interface ContactUsProps {
   name: string;
   email: string;
   brand: string;
