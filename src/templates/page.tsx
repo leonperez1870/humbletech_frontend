@@ -1,49 +1,52 @@
 import React from "react";
-import { graphql } from "gatsby";
-import Hero from "../components/hero/hero";
-import ImgWithText from "../components/image-w-text/image-w-text";
-import Faq from "../components/faq-section/faq";
-import ContactForm from "../components/contact-form/contact-form";
+import Hero, { HeroProps } from "../components/hero/hero";
+import ImgWithText, { ImgWithTextProps } from "../components/image-w-text/image-w-text";
+import Faq, { FaqProps } from "../components/faq-section/faq";
+import ContactForm, { ContactUsProps } from "../components/contact-form/contact-form";
 import Layout from "./layout";
+import { allContentfulPagesType } from "../types";
 
-interface PageContext {
-  id: string;
-  title: string;
-  sections: any[];
-}
+type ComponentMapType = {
+  [key: string]: React.FC<any>;
+  ContentfulHero: React.FC<HeroProps>;
+  ContentfulImageWithText: React.FC<ImgWithTextProps>;
+  ContentfulFaqSection: React.FC<FaqProps>;
+  ContentfulContactUsSection: React.FC<ContactUsProps>;
+};
 
-interface PageProps {
-  pageContext: PageContext;
-}
-
-const COMPONENT_MAP = {
+const COMPONENT_MAP: ComponentMapType = {
   ContentfulHero: Hero,
   ContentfulImageWithText: ImgWithText,
   ContentfulFaqSection: Faq,
   ContentfulContactUsSection: ContactForm,
 };
 
-const Page: React.FC<PageProps> = ({ pageContext }) => {
-  const { sections } = pageContext;
+interface NewPageProps extends allContentfulPagesType {
+  pageContext: {
+    sections: {
+      __typename: string;
+      id: string;
+      [key: string]: any;
+    }[];
+  };
+}
 
+const Page: React.FC<NewPageProps> = ({ pageContext }) => {
+  const { sections } = pageContext;
   return (
     <div>
       <Layout>
-        {sections.map((section) => {
-          // Get the component for this __typename
+        {sections.map((section, index) => {
           const Component = COMPONENT_MAP[section.__typename];
-          
+          const sectionId = section.id ? section.id : index;
           if (!Component) {
-            // If no component is found, render nothing
             return null;
           }
-
-          // Render the component
-          return <Component key={section.id} {...section} />;
+          return <Component key={sectionId} {...section} />;
         })}
       </Layout>
     </div>
-  )
-}
+  );
+};
 
 export default Page;
