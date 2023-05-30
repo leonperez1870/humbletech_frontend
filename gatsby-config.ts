@@ -18,14 +18,34 @@ const config: GatsbyConfig = {
       "accessToken": process.env.CONTENTFUL_ACCESS_TOKEN,
       "spaceId": process.env.CONTENTFUL_SPACE_ID
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-postcss", {
+  }, {
+    resolve: 'gatsby-source-shopify',
+    options: {
+      storeUrl: process.env.SHOPIFY_STORE_DOMAIN,
+      password: process.env.SHOPIFY_SHOP_PASSWORD,
+      shopifyConnections: ["orders", "collections", "locations"],
+    },
+  },
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
       "path": "./src/images/"
     },
     __key: "images"
-  }]
+  },
+  {
+    resolve: "gatsby-plugin-graphql-codegen",
+    options: {
+      fileName: `./gatsby-graphql.ts`,
+      documentPaths: ["./src/**/*.{ts,tsx}", "./node_modules/gatsby-*/**/*.js", "./gatsby-node.ts"],
+    }
+  },
+  "gatsby-plugin-image", 
+  "gatsby-plugin-sharp", 
+  "gatsby-transformer-sharp", 
+  "gatsby-plugin-postcss", 
+  ],
 };
 
 export default config;
