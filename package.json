@@ -12,9 +12,15 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ggl-types": "graphql-codegen --config codegen.yml",
+    "ggl-types:watch": "graphql-codegen --config codegen.yml -w"
   },
   "dependencies": {
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@shopify/hydrogen": "^2023.4.3",
     "@shopify/hydrogen-react": "^2023.4.0",
     "@shopify/polaris": "^10.49.1",
     "axios": "^1.4.0",
@@ -22,10 +28,13 @@
     "gatsby": "^5.9.1",
     "gatsby-background-image": "^1.6.0",
     "gatsby-plugin-google-gtag": "^5.9.0",
+    "gatsby-plugin-graphql-codegen": "^3.1.1",
     "gatsby-plugin-image": "^3.9.0",
     "gatsby-plugin-sharp": "^5.9.0",
     "gatsby-source-contentful": "^8.10.0",
     "gatsby-source-filesystem": "^5.10.0",
+    "gatsby-source-shopify": "^8.10.0",
+    "gatsby-source-shopify-storefront": "^1.0.0",
     "gatsby-transformer-sharp": "^5.10.0",
     "gbimage-bridge": "^0.2.2",
     "react": "^18.2.0",
@@ -33,6 +42,7 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^4.0.0",
     "@types/eslint": "^8.37.0",
     "@types/node": "^18.16.5",
     "@types/react": "^18.2.5",
@@ -48,6 +58,7 @@
     "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "gatsby-plugin-postcss": "^6.9.0",
+    "gatsby-plugin-ts-config": "^2.1.3",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2",
