@@ -576,57 +576,6 @@ export type ContentfulAssetSys = {
   revision?: Maybe<Scalars['Int']>;
 };
 
-export type ContentfulSeoMetadata = ContentfulReference & ContentfulEntry & Node & {
-  contentful_id: Scalars['String'];
-  id: Scalars['ID'];
-  node_locale: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  keywords?: Maybe<Array<Maybe<Scalars['String']>>>;
-  no_index?: Maybe<Scalars['Boolean']>;
-  no_follow?: Maybe<Scalars['Boolean']>;
-  article?: Maybe<Array<Maybe<ContentfulArticle>>>;
-  spaceId?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['Date']>;
-  updatedAt?: Maybe<Scalars['Date']>;
-  sys?: Maybe<ContentfulSeoMetadataSys>;
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-};
-
-
-export type ContentfulSeoMetadataCreatedAtArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type ContentfulSeoMetadataUpdatedAtArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-export type ContentfulSeoMetadataSys = {
-  type?: Maybe<Scalars['String']>;
-  revision?: Maybe<Scalars['Int']>;
-  contentType?: Maybe<ContentfulSeoMetadataSysContentType>;
-};
-
-export type ContentfulSeoMetadataSysContentType = {
-  sys?: Maybe<ContentfulSeoMetadataSysContentTypeSys>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeSys = {
-  type?: Maybe<Scalars['String']>;
-  linkType?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-};
-
 export type ContentfulArticle = ContentfulReference & ContentfulEntry & Node & {
   contentful_id: Scalars['String'];
   id: Scalars['ID'];
@@ -635,7 +584,6 @@ export type ContentfulArticle = ContentfulReference & ContentfulEntry & Node & {
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   body?: Maybe<Array<Maybe<ContentfulComponentText>>>;
-  seo?: Maybe<ContentfulSeoMetadata>;
   spaceId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
@@ -1026,6 +974,143 @@ export type ContentfulContactUsSectionSysContentType = {
 };
 
 export type ContentfulContactUsSectionSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponent = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  openGraphTitle?: Maybe<Scalars['String']>;
+  openGraphDescription?: Maybe<Scalars['String']>;
+  openGraphImage?: Maybe<ContentfulSeoComponentOpenGraphImage>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulSeoComponentSys>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulSeoComponentCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulSeoComponentUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImage = {
+  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSys>;
+  fields?: Maybe<ContentfulSeoComponentOpenGraphImageFields>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSys = {
+  space?: Maybe<ContentfulSeoComponentOpenGraphImageSysSpace>;
+  id?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  environment?: Maybe<ContentfulSeoComponentOpenGraphImageSysEnvironment>;
+  revision?: Maybe<Scalars['Int']>;
+};
+
+
+export type ContentfulSeoComponentOpenGraphImageSysCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulSeoComponentOpenGraphImageSysUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpace = {
+  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSysSpaceSys>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironment = {
+  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSys>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSys = {
+  id?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFields = {
+  title?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsTitle>;
+  description?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsDescription>;
+  file?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFile>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsTitle = {
+  en_US?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsDescription = {
+  en_US?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFile = {
+  en_US?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_Us>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_Us = {
+  url?: Maybe<Scalars['String']>;
+  details?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetails>;
+  fileName?: Maybe<Scalars['String']>;
+  contentType?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetails = {
+  size?: Maybe<Scalars['Int']>;
+  image?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImage>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImage = {
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+};
+
+export type ContentfulSeoComponentSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulSeoComponentSysContentType>;
+};
+
+export type ContentfulSeoComponentSysContentType = {
+  sys?: Maybe<ContentfulSeoComponentSysContentTypeSys>;
+};
+
+export type ContentfulSeoComponentSysContentTypeSys = {
   type?: Maybe<Scalars['String']>;
   linkType?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -2615,6 +2700,78 @@ export type ShopifyRefundCreatedAtArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
+export type MarkdownHeading = {
+  id?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  depth?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownHeadingLevels =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
+
+export type MarkdownExcerptFormats =
+  | 'PLAIN'
+  | 'HTML'
+  | 'MARKDOWN';
+
+export type MarkdownWordCount = {
+  paragraphs?: Maybe<Scalars['Int']>;
+  sentences?: Maybe<Scalars['Int']>;
+  words?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownRemark = Node & {
+  id: Scalars['ID'];
+  frontmatter?: Maybe<MarkdownRemarkFrontmatter>;
+  excerpt?: Maybe<Scalars['String']>;
+  rawMarkdownBody?: Maybe<Scalars['String']>;
+  html?: Maybe<Scalars['String']>;
+  htmlAst?: Maybe<Scalars['JSON']>;
+  excerptAst?: Maybe<Scalars['JSON']>;
+  headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
+  timeToRead?: Maybe<Scalars['Int']>;
+  tableOfContents?: Maybe<Scalars['String']>;
+  wordCount?: Maybe<MarkdownWordCount>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type MarkdownRemarkExcerptArgs = {
+  pruneLength?: InputMaybe<Scalars['Int']>;
+  truncate?: InputMaybe<Scalars['Boolean']>;
+  format?: InputMaybe<MarkdownExcerptFormats>;
+};
+
+
+export type MarkdownRemarkExcerptAstArgs = {
+  pruneLength?: InputMaybe<Scalars['Int']>;
+  truncate?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MarkdownRemarkHeadingsArgs = {
+  depth?: InputMaybe<MarkdownHeadingLevels>;
+};
+
+
+export type MarkdownRemarkTableOfContentsArgs = {
+  absolute?: InputMaybe<Scalars['Boolean']>;
+  pathToSlugField?: InputMaybe<Scalars['String']>;
+  maxDepth?: InputMaybe<Scalars['Int']>;
+  heading?: InputMaybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkFrontmatter = {
+  title?: Maybe<Scalars['String']>;
+};
+
 export type GatsbyImageFormat =
   | 'NO_CHANGE'
   | 'AUTO'
@@ -2890,6 +3047,10 @@ export type ContentfulFaqItemAnswerTextNode = Node & {
   internal: Internal;
   answer?: Maybe<Scalars['String']>;
   sys?: Maybe<ContentfulFaqItemAnswerTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
 };
 
 export type ContentfulFaqItemAnswerTextNodeSys = {
@@ -2903,6 +3064,10 @@ export type ContentfulContactUsSectionContactSectionSubHeadingTextNode = Node & 
   internal: Internal;
   contactSectionSubHeading?: Maybe<Scalars['String']>;
   sys?: Maybe<ContentfulContactUsSectionContactSectionSubHeadingTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
 };
 
 export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeSys = {
@@ -2943,8 +3108,6 @@ export type Query = {
   allContentfulEntry: ContentfulEntryConnection;
   contentfulAsset?: Maybe<ContentfulAsset>;
   allContentfulAsset: ContentfulAssetConnection;
-  contentfulSeoMetadata?: Maybe<ContentfulSeoMetadata>;
-  allContentfulSeoMetadata: ContentfulSeoMetadataConnection;
   contentfulArticle?: Maybe<ContentfulArticle>;
   allContentfulArticle: ContentfulArticleConnection;
   contentfulComponentText?: Maybe<ContentfulComponentText>;
@@ -2961,6 +3124,8 @@ export type Query = {
   allContentfulFaqItem: ContentfulFaqItemConnection;
   contentfulContactUsSection?: Maybe<ContentfulContactUsSection>;
   allContentfulContactUsSection: ContentfulContactUsSectionConnection;
+  contentfulSeoComponent?: Maybe<ContentfulSeoComponent>;
+  allContentfulSeoComponent: ContentfulSeoComponentConnection;
   shopifyExternalVideo?: Maybe<ShopifyExternalVideo>;
   allShopifyExternalVideo: ShopifyExternalVideoConnection;
   shopifyMedia?: Maybe<ShopifyMedia>;
@@ -2987,6 +3152,8 @@ export type Query = {
   allShopifyLineItem: ShopifyLineItemConnection;
   shopifyOrder?: Maybe<ShopifyOrder>;
   allShopifyOrder: ShopifyOrderConnection;
+  markdownRemark?: Maybe<MarkdownRemark>;
+  allMarkdownRemark: MarkdownRemarkConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
   contentfulFaqItemAnswerTextNode?: Maybe<ContentfulFaqItemAnswerTextNode>;
@@ -3265,34 +3432,6 @@ export type QueryAllContentfulAssetArgs = {
 };
 
 
-export type QueryContentfulSeoMetadataArgs = {
-  contentful_id?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  node_locale?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  description?: InputMaybe<StringQueryOperatorInput>;
-  keywords?: InputMaybe<StringQueryOperatorInput>;
-  no_index?: InputMaybe<BooleanQueryOperatorInput>;
-  no_follow?: InputMaybe<BooleanQueryOperatorInput>;
-  article?: InputMaybe<ContentfulArticleFilterListInput>;
-  spaceId?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulSeoMetadataSysFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
-
-export type QueryAllContentfulSeoMetadataArgs = {
-  filter?: InputMaybe<ContentfulSeoMetadataFilterInput>;
-  sort?: InputMaybe<Array<InputMaybe<ContentfulSeoMetadataSortInput>>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
-
 export type QueryContentfulArticleArgs = {
   contentful_id?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
@@ -3301,7 +3440,6 @@ export type QueryContentfulArticleArgs = {
   title?: InputMaybe<StringQueryOperatorInput>;
   slug?: InputMaybe<StringQueryOperatorInput>;
   body?: InputMaybe<ContentfulComponentTextFilterListInput>;
-  seo?: InputMaybe<ContentfulSeoMetadataFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
@@ -3497,6 +3635,34 @@ export type QueryContentfulContactUsSectionArgs = {
 export type QueryAllContentfulContactUsSectionArgs = {
   filter?: InputMaybe<ContentfulContactUsSectionFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ContentfulContactUsSectionSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulSeoComponentArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  url?: InputMaybe<StringQueryOperatorInput>;
+  openGraphTitle?: InputMaybe<StringQueryOperatorInput>;
+  openGraphDescription?: InputMaybe<StringQueryOperatorInput>;
+  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulSeoComponentSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulSeoComponentArgs = {
+  filter?: InputMaybe<ContentfulSeoComponentFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulSeoComponentSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -3880,6 +4046,32 @@ export type QueryAllShopifyOrderArgs = {
 };
 
 
+export type QueryMarkdownRemarkArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllMarkdownRemarkArgs = {
+  filter?: InputMaybe<MarkdownRemarkFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<MarkdownRemarkSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
 export type QueryImageSharpArgs = {
   fixed?: InputMaybe<ImageSharpFixedFilterInput>;
   fluid?: InputMaybe<ImageSharpFluidFilterInput>;
@@ -3908,6 +4100,8 @@ export type QueryContentfulFaqItemAnswerTextNodeArgs = {
   internal?: InputMaybe<InternalFilterInput>;
   answer?: InputMaybe<StringQueryOperatorInput>;
   sys?: InputMaybe<ContentfulFaqItemAnswerTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
 
@@ -3926,6 +4120,8 @@ export type QueryContentfulContactUsSectionContactSectionSubHeadingTextNodeArgs 
   internal?: InputMaybe<InternalFilterInput>;
   contactSectionSubHeading?: InputMaybe<StringQueryOperatorInput>;
   sys?: InputMaybe<ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
 
@@ -5688,28 +5884,6 @@ export type RemoteFileResizeSortInput = {
   src?: InputMaybe<SortOrderEnum>;
 };
 
-export type ContentfulArticleFilterListInput = {
-  elemMatch?: InputMaybe<ContentfulArticleFilterInput>;
-};
-
-export type ContentfulArticleFilterInput = {
-  contentful_id?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  node_locale?: InputMaybe<StringQueryOperatorInput>;
-  internalName?: InputMaybe<StringQueryOperatorInput>;
-  title?: InputMaybe<StringQueryOperatorInput>;
-  slug?: InputMaybe<StringQueryOperatorInput>;
-  body?: InputMaybe<ContentfulComponentTextFilterListInput>;
-  seo?: InputMaybe<ContentfulSeoMetadataFilterInput>;
-  spaceId?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulArticleSysFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
 export type ContentfulComponentTextFilterListInput = {
   elemMatch?: InputMaybe<ContentfulComponentTextFilterInput>;
 };
@@ -5734,55 +5908,25 @@ export type ContentfulComponentTextTextFilterInput = {
   raw?: InputMaybe<StringQueryOperatorInput>;
 };
 
-export type ContentfulComponentTextSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  revision?: InputMaybe<IntQueryOperatorInput>;
-  contentType?: InputMaybe<ContentfulComponentTextSysContentTypeFilterInput>;
+export type ContentfulArticleFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulArticleFilterInput>;
 };
 
-export type ContentfulComponentTextSysContentTypeFilterInput = {
-  sys?: InputMaybe<ContentfulComponentTextSysContentTypeSysFilterInput>;
-};
-
-export type ContentfulComponentTextSysContentTypeSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  linkType?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoMetadataFilterInput = {
+export type ContentfulArticleFilterInput = {
   contentful_id?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   node_locale?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  description?: InputMaybe<StringQueryOperatorInput>;
-  keywords?: InputMaybe<StringQueryOperatorInput>;
-  no_index?: InputMaybe<BooleanQueryOperatorInput>;
-  no_follow?: InputMaybe<BooleanQueryOperatorInput>;
-  article?: InputMaybe<ContentfulArticleFilterListInput>;
+  internalName?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  slug?: InputMaybe<StringQueryOperatorInput>;
+  body?: InputMaybe<ContentfulComponentTextFilterListInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulSeoMetadataSysFilterInput>;
+  sys?: InputMaybe<ContentfulArticleSysFilterInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
-};
-
-export type ContentfulSeoMetadataSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  revision?: InputMaybe<IntQueryOperatorInput>;
-  contentType?: InputMaybe<ContentfulSeoMetadataSysContentTypeFilterInput>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeFilterInput = {
-  sys?: InputMaybe<ContentfulSeoMetadataSysContentTypeSysFilterInput>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  linkType?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type ContentfulArticleSysFilterInput = {
@@ -5801,68 +5945,65 @@ export type ContentfulArticleSysContentTypeSysFilterInput = {
   id?: InputMaybe<StringQueryOperatorInput>;
 };
 
-export type ContentfulSeoMetadataConnection = {
+export type ContentfulComponentTextSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulComponentTextSysContentTypeFilterInput>;
+};
+
+export type ContentfulComponentTextSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulComponentTextSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulComponentTextSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulArticleConnection = {
   totalCount: Scalars['Int'];
-  edges: Array<ContentfulSeoMetadataEdge>;
-  nodes: Array<ContentfulSeoMetadata>;
+  edges: Array<ContentfulArticleEdge>;
+  nodes: Array<ContentfulArticle>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
   sum?: Maybe<Scalars['Float']>;
-  group: Array<ContentfulSeoMetadataGroupConnection>;
+  group: Array<ContentfulArticleGroupConnection>;
 };
 
 
-export type ContentfulSeoMetadataConnectionDistinctArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleConnectionDistinctArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataConnectionMaxArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleConnectionMaxArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataConnectionMinArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleConnectionMinArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataConnectionSumArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleConnectionSumArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataConnectionGroupArgs = {
+export type ContentfulArticleConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
-  field: ContentfulSeoMetadataFieldSelector;
+  field: ContentfulArticleFieldSelector;
 };
 
-export type ContentfulSeoMetadataEdge = {
-  next?: Maybe<ContentfulSeoMetadata>;
-  node: ContentfulSeoMetadata;
-  previous?: Maybe<ContentfulSeoMetadata>;
-};
-
-export type ContentfulSeoMetadataFieldSelector = {
-  contentful_id?: InputMaybe<FieldSelectorEnum>;
-  id?: InputMaybe<FieldSelectorEnum>;
-  node_locale?: InputMaybe<FieldSelectorEnum>;
-  name?: InputMaybe<FieldSelectorEnum>;
-  description?: InputMaybe<FieldSelectorEnum>;
-  keywords?: InputMaybe<FieldSelectorEnum>;
-  no_index?: InputMaybe<FieldSelectorEnum>;
-  no_follow?: InputMaybe<FieldSelectorEnum>;
-  article?: InputMaybe<ContentfulArticleFieldSelector>;
-  spaceId?: InputMaybe<FieldSelectorEnum>;
-  createdAt?: InputMaybe<FieldSelectorEnum>;
-  updatedAt?: InputMaybe<FieldSelectorEnum>;
-  sys?: InputMaybe<ContentfulSeoMetadataSysFieldSelector>;
-  parent?: InputMaybe<NodeFieldSelector>;
-  children?: InputMaybe<NodeFieldSelector>;
-  internal?: InputMaybe<InternalFieldSelector>;
+export type ContentfulArticleEdge = {
+  next?: Maybe<ContentfulArticle>;
+  node: ContentfulArticle;
+  previous?: Maybe<ContentfulArticle>;
 };
 
 export type ContentfulArticleFieldSelector = {
@@ -5873,7 +6014,6 @@ export type ContentfulArticleFieldSelector = {
   title?: InputMaybe<FieldSelectorEnum>;
   slug?: InputMaybe<FieldSelectorEnum>;
   body?: InputMaybe<ContentfulComponentTextFieldSelector>;
-  seo?: InputMaybe<ContentfulSeoMetadataFieldSelector>;
   spaceId?: InputMaybe<FieldSelectorEnum>;
   createdAt?: InputMaybe<FieldSelectorEnum>;
   updatedAt?: InputMaybe<FieldSelectorEnum>;
@@ -5935,80 +6075,45 @@ export type ContentfulArticleSysContentTypeSysFieldSelector = {
   id?: InputMaybe<FieldSelectorEnum>;
 };
 
-export type ContentfulSeoMetadataSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
-  revision?: InputMaybe<FieldSelectorEnum>;
-  contentType?: InputMaybe<ContentfulSeoMetadataSysContentTypeFieldSelector>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeFieldSelector = {
-  sys?: InputMaybe<ContentfulSeoMetadataSysContentTypeSysFieldSelector>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
-  linkType?: InputMaybe<FieldSelectorEnum>;
-  id?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoMetadataGroupConnection = {
+export type ContentfulArticleGroupConnection = {
   totalCount: Scalars['Int'];
-  edges: Array<ContentfulSeoMetadataEdge>;
-  nodes: Array<ContentfulSeoMetadata>;
+  edges: Array<ContentfulArticleEdge>;
+  nodes: Array<ContentfulArticle>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
   sum?: Maybe<Scalars['Float']>;
-  group: Array<ContentfulSeoMetadataGroupConnection>;
+  group: Array<ContentfulArticleGroupConnection>;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
 };
 
 
-export type ContentfulSeoMetadataGroupConnectionDistinctArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleGroupConnectionDistinctArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataGroupConnectionMaxArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleGroupConnectionMaxArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataGroupConnectionMinArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleGroupConnectionMinArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataGroupConnectionSumArgs = {
-  field: ContentfulSeoMetadataFieldSelector;
+export type ContentfulArticleGroupConnectionSumArgs = {
+  field: ContentfulArticleFieldSelector;
 };
 
 
-export type ContentfulSeoMetadataGroupConnectionGroupArgs = {
+export type ContentfulArticleGroupConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
-  field: ContentfulSeoMetadataFieldSelector;
-};
-
-export type ContentfulSeoMetadataSortInput = {
-  contentful_id?: InputMaybe<SortOrderEnum>;
-  id?: InputMaybe<SortOrderEnum>;
-  node_locale?: InputMaybe<SortOrderEnum>;
-  name?: InputMaybe<SortOrderEnum>;
-  description?: InputMaybe<SortOrderEnum>;
-  keywords?: InputMaybe<SortOrderEnum>;
-  no_index?: InputMaybe<SortOrderEnum>;
-  no_follow?: InputMaybe<SortOrderEnum>;
-  article?: InputMaybe<ContentfulArticleSortInput>;
-  spaceId?: InputMaybe<SortOrderEnum>;
-  createdAt?: InputMaybe<SortOrderEnum>;
-  updatedAt?: InputMaybe<SortOrderEnum>;
-  sys?: InputMaybe<ContentfulSeoMetadataSysSortInput>;
-  parent?: InputMaybe<NodeSortInput>;
-  children?: InputMaybe<NodeSortInput>;
-  internal?: InputMaybe<InternalSortInput>;
+  field: ContentfulArticleFieldSelector;
 };
 
 export type ContentfulArticleSortInput = {
@@ -6019,7 +6124,6 @@ export type ContentfulArticleSortInput = {
   title?: InputMaybe<SortOrderEnum>;
   slug?: InputMaybe<SortOrderEnum>;
   body?: InputMaybe<ContentfulComponentTextSortInput>;
-  seo?: InputMaybe<ContentfulSeoMetadataSortInput>;
   spaceId?: InputMaybe<SortOrderEnum>;
   createdAt?: InputMaybe<SortOrderEnum>;
   updatedAt?: InputMaybe<SortOrderEnum>;
@@ -6079,108 +6183,6 @@ export type ContentfulArticleSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoMetadataSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
-  revision?: InputMaybe<SortOrderEnum>;
-  contentType?: InputMaybe<ContentfulSeoMetadataSysContentTypeSortInput>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeSortInput = {
-  sys?: InputMaybe<ContentfulSeoMetadataSysContentTypeSysSortInput>;
-};
-
-export type ContentfulSeoMetadataSysContentTypeSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
-  linkType?: InputMaybe<SortOrderEnum>;
-  id?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulArticleConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<ContentfulArticleEdge>;
-  nodes: Array<ContentfulArticle>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<ContentfulArticleGroupConnection>;
-};
-
-
-export type ContentfulArticleConnectionDistinctArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleConnectionMaxArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleConnectionMinArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleConnectionSumArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: ContentfulArticleFieldSelector;
-};
-
-export type ContentfulArticleEdge = {
-  next?: Maybe<ContentfulArticle>;
-  node: ContentfulArticle;
-  previous?: Maybe<ContentfulArticle>;
-};
-
-export type ContentfulArticleGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<ContentfulArticleEdge>;
-  nodes: Array<ContentfulArticle>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<ContentfulArticleGroupConnection>;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-
-export type ContentfulArticleGroupConnectionDistinctArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleGroupConnectionMaxArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleGroupConnectionMinArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleGroupConnectionSumArgs = {
-  field: ContentfulArticleFieldSelector;
-};
-
-
-export type ContentfulArticleGroupConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: ContentfulArticleFieldSelector;
 };
 
 export type ContentfulComponentTextConnection = {
@@ -6893,10 +6895,53 @@ export type ContentfulFaqItemAnswerTextNodeFilterInput = {
   internal?: InputMaybe<InternalFilterInput>;
   answer?: InputMaybe<StringQueryOperatorInput>;
   sys?: InputMaybe<ContentfulFaqItemAnswerTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
 export type ContentfulFaqItemAnswerTextNodeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownRemarkFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type MarkdownRemarkFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatterFilterInput = {
+  title?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
+};
+
+export type MarkdownHeadingFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  value?: InputMaybe<StringQueryOperatorInput>;
+  depth?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MarkdownWordCountFilterInput = {
+  paragraphs?: InputMaybe<IntQueryOperatorInput>;
+  sentences?: InputMaybe<IntQueryOperatorInput>;
+  words?: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type ContentfulFaqItemSysFilterInput = {
@@ -7005,10 +7050,45 @@ export type ContentfulFaqItemAnswerTextNodeFieldSelector = {
   internal?: InputMaybe<InternalFieldSelector>;
   answer?: InputMaybe<FieldSelectorEnum>;
   sys?: InputMaybe<ContentfulFaqItemAnswerTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
 };
 
 export type ContentfulFaqItemAnswerTextNodeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownRemarkFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFieldSelector>;
+  excerpt?: InputMaybe<FieldSelectorEnum>;
+  rawMarkdownBody?: InputMaybe<FieldSelectorEnum>;
+  html?: InputMaybe<FieldSelectorEnum>;
+  htmlAst?: InputMaybe<FieldSelectorEnum>;
+  excerptAst?: InputMaybe<FieldSelectorEnum>;
+  headings?: InputMaybe<MarkdownHeadingFieldSelector>;
+  timeToRead?: InputMaybe<FieldSelectorEnum>;
+  tableOfContents?: InputMaybe<FieldSelectorEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type MarkdownRemarkFrontmatterFieldSelector = {
+  title?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownHeadingFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  value?: InputMaybe<FieldSelectorEnum>;
+  depth?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownWordCountFieldSelector = {
+  paragraphs?: InputMaybe<FieldSelectorEnum>;
+  sentences?: InputMaybe<FieldSelectorEnum>;
+  words?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type ContentfulFaqItemSysFieldSelector = {
@@ -7125,10 +7205,45 @@ export type ContentfulFaqItemAnswerTextNodeSortInput = {
   internal?: InputMaybe<InternalSortInput>;
   answer?: InputMaybe<SortOrderEnum>;
   sys?: InputMaybe<ContentfulFaqItemAnswerTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
 };
 
 export type ContentfulFaqItemAnswerTextNodeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownRemarkSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterSortInput>;
+  excerpt?: InputMaybe<SortOrderEnum>;
+  rawMarkdownBody?: InputMaybe<SortOrderEnum>;
+  html?: InputMaybe<SortOrderEnum>;
+  htmlAst?: InputMaybe<SortOrderEnum>;
+  excerptAst?: InputMaybe<SortOrderEnum>;
+  headings?: InputMaybe<MarkdownHeadingSortInput>;
+  timeToRead?: InputMaybe<SortOrderEnum>;
+  tableOfContents?: InputMaybe<SortOrderEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type MarkdownRemarkFrontmatterSortInput = {
+  title?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownHeadingSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  value?: InputMaybe<SortOrderEnum>;
+  depth?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownWordCountSortInput = {
+  paragraphs?: InputMaybe<SortOrderEnum>;
+  sentences?: InputMaybe<SortOrderEnum>;
+  words?: InputMaybe<SortOrderEnum>;
 };
 
 export type ContentfulFaqItemSysSortInput = {
@@ -7256,6 +7371,8 @@ export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeFilterInpu
   internal?: InputMaybe<InternalFilterInput>;
   contactSectionSubHeading?: InputMaybe<StringQueryOperatorInput>;
   sys?: InputMaybe<ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
 export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysFilterInput = {
@@ -7352,6 +7469,8 @@ export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeFieldSelec
   internal?: InputMaybe<InternalFieldSelector>;
   contactSectionSubHeading?: InputMaybe<FieldSelectorEnum>;
   sys?: InputMaybe<ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
 };
 
 export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysFieldSelector = {
@@ -7458,6 +7577,8 @@ export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeSortInput 
   internal?: InputMaybe<InternalSortInput>;
   contactSectionSubHeading?: InputMaybe<SortOrderEnum>;
   sys?: InputMaybe<ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
 };
 
 export type ContentfulContactUsSectionContactSectionSubHeadingTextNodeSysSortInput = {
@@ -7475,6 +7596,407 @@ export type ContentfulContactUsSectionSysContentTypeSortInput = {
 };
 
 export type ContentfulContactUsSectionSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFilterInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysFilterInput>;
+  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysFilterInput = {
+  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceFilterInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  type?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentFilterInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceFilterInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentFilterInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFilterInput = {
+  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleFilterInput>;
+  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionFilterInput>;
+  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsTitleFilterInput = {
+  en_US?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionFilterInput = {
+  en_US?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileFilterInput = {
+  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFilterInput = {
+  url?: InputMaybe<StringQueryOperatorInput>;
+  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFilterInput>;
+  fileName?: InputMaybe<StringQueryOperatorInput>;
+  contentType?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFilterInput = {
+  size?: InputMaybe<IntQueryOperatorInput>;
+  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFilterInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFilterInput = {
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulSeoComponentSysContentTypeFilterInput>;
+};
+
+export type ContentfulSeoComponentSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulSeoComponentSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulSeoComponentSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulSeoComponentConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulSeoComponentEdge>;
+  nodes: Array<ContentfulSeoComponent>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulSeoComponentGroupConnection>;
+};
+
+
+export type ContentfulSeoComponentConnectionDistinctArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentConnectionMaxArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentConnectionMinArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentConnectionSumArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+export type ContentfulSeoComponentEdge = {
+  next?: Maybe<ContentfulSeoComponent>;
+  node: ContentfulSeoComponent;
+  previous?: Maybe<ContentfulSeoComponent>;
+};
+
+export type ContentfulSeoComponentFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  title?: InputMaybe<FieldSelectorEnum>;
+  description?: InputMaybe<FieldSelectorEnum>;
+  url?: InputMaybe<FieldSelectorEnum>;
+  openGraphTitle?: InputMaybe<FieldSelectorEnum>;
+  openGraphDescription?: InputMaybe<FieldSelectorEnum>;
+  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulSeoComponentSysFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldSelector = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysFieldSelector>;
+  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysFieldSelector = {
+  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceFieldSelector>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  type?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentFieldSelector>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceFieldSelector = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentFieldSelector = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFieldSelector = {
+  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleFieldSelector>;
+  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionFieldSelector>;
+  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsTitleFieldSelector = {
+  en_US?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionFieldSelector = {
+  en_US?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileFieldSelector = {
+  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFieldSelector = {
+  url?: InputMaybe<FieldSelectorEnum>;
+  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFieldSelector>;
+  fileName?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFieldSelector = {
+  size?: InputMaybe<FieldSelectorEnum>;
+  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFieldSelector>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFieldSelector = {
+  width?: InputMaybe<FieldSelectorEnum>;
+  height?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulSeoComponentSysContentTypeFieldSelector>;
+};
+
+export type ContentfulSeoComponentSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulSeoComponentSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulSeoComponentSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulSeoComponentGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulSeoComponentEdge>;
+  nodes: Array<ContentfulSeoComponent>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulSeoComponentGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulSeoComponentGroupConnectionDistinctArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentGroupConnectionMaxArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentGroupConnectionMinArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentGroupConnectionSumArgs = {
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+
+export type ContentfulSeoComponentGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulSeoComponentFieldSelector;
+};
+
+export type ContentfulSeoComponentFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  url?: InputMaybe<StringQueryOperatorInput>;
+  openGraphTitle?: InputMaybe<StringQueryOperatorInput>;
+  openGraphDescription?: InputMaybe<StringQueryOperatorInput>;
+  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulSeoComponentSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulSeoComponentSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  title?: InputMaybe<SortOrderEnum>;
+  description?: InputMaybe<SortOrderEnum>;
+  url?: InputMaybe<SortOrderEnum>;
+  openGraphTitle?: InputMaybe<SortOrderEnum>;
+  openGraphDescription?: InputMaybe<SortOrderEnum>;
+  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulSeoComponentSysSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSortInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSortInput>;
+  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSortInput = {
+  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSortInput>;
+  id?: InputMaybe<SortOrderEnum>;
+  type?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSortInput>;
+  revision?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceSortInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysSpaceSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSortInput = {
+  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsSortInput = {
+  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleSortInput>;
+  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionSortInput>;
+  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsTitleSortInput = {
+  en_US?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionSortInput = {
+  en_US?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileSortInput = {
+  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsSortInput = {
+  url?: InputMaybe<SortOrderEnum>;
+  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsSortInput>;
+  fileName?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsSortInput = {
+  size?: InputMaybe<SortOrderEnum>;
+  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageSortInput>;
+};
+
+export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageSortInput = {
+  width?: InputMaybe<SortOrderEnum>;
+  height?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulSeoComponentSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulSeoComponentSysContentTypeSortInput>;
+};
+
+export type ContentfulSeoComponentSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulSeoComponentSysContentTypeSysSortInput>;
+};
+
+export type ContentfulSeoComponentSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
@@ -9693,6 +10215,92 @@ export type ShopifyRefundSortInput = {
   shopifyId?: InputMaybe<SortOrderEnum>;
 };
 
+export type MarkdownRemarkConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<MarkdownRemarkGroupConnection>;
+};
+
+
+export type MarkdownRemarkConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionMaxArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionMinArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionSumArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldSelector;
+};
+
+export type MarkdownRemarkEdge = {
+  next?: Maybe<MarkdownRemark>;
+  node: MarkdownRemark;
+  previous?: Maybe<MarkdownRemark>;
+};
+
+export type MarkdownRemarkGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<MarkdownRemarkGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type MarkdownRemarkGroupConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionMaxArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionMinArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionSumArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldSelector;
+};
+
 export type ImageSharpConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ImageSharpEdge>;
@@ -10081,6 +10689,11 @@ export type ContentfulContentTypeSortInput = {
 export type ContentfulContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
 };
+
+export type SeoQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: string | null, openGraphTitle?: string | null, description?: string | null, url?: string | null, title?: string | null, openGraphImage?: { fields?: { file?: { en_US?: { url?: string | null } | null } | null } | null } | null } | null };
 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
