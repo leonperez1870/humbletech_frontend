@@ -7,25 +7,26 @@ const config: GatsbyConfig = {
     title: `The Humble Tech`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
-  // "gatsby-plugin-google-gtag",
   graphqlTypegen: true,
-  plugins: [{
+  plugins: [
+  "gatsby-plugin-offline",
+  {
     resolve: 'gatsby-source-contentful',
     options: {
       "accessToken": process.env.CONTENTFUL_ACCESS_TOKEN,
       "spaceId": process.env.CONTENTFUL_SPACE_ID
     }
-  }, {
+  }, 
+  {
     resolve: 'gatsby-source-shopify',
     options: {
-      storeUrl: process.env.SHOPIFY_STORE_DOMAIN,
-      password: process.env.SHOPIFY_SHOP_PASSWORD,
-      shopifyConnections: ["orders", "collections", "locations"],
-    },
-  },
+      password: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN,
+      storeUrl: process.env.GATSBY_SHOPIFY_SHOP_NAME,
+      shopifyConnections: [
+        'orders', 'collections', 'locations'
+      ]
+    }
+  }, 
   {
     resolve: 'gatsby-source-filesystem',
     options: {
@@ -41,10 +42,27 @@ const config: GatsbyConfig = {
       documentPaths: ["./src/**/*.{ts,tsx}", "./node_modules/gatsby-*/**/*.js", "./gatsby-node.ts"],
     }
   },
+  {
+    resolve: "gatsby-transformer-remark",
+    options: {
+      plugins: [
+        `gatsby-remark-images-contentful`,
+        `gatsby-remark-responsive-iframe`
+      ]
+    }
+  },
+  {
+    resolve: `gatsby-plugin-polyfill-io`,
+    options: {
+      features: ['Array.prototype.map', 'fetch'],
+    }
+  },
   "gatsby-plugin-image", 
   "gatsby-plugin-sharp", 
   "gatsby-transformer-sharp", 
-  "gatsby-plugin-postcss", 
+  "gatsby-plugin-postcss",
+  "gatsby-plugin-catch-links",
+  "gatsby-plugin-sass"
   ],
 };
 
