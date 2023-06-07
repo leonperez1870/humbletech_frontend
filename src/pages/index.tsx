@@ -5,6 +5,7 @@ import Hero from "../components/hero/hero";
 import ImgWithText from "../components/image-w-text/image-w-text";
 import Faq from "../components/faq-section/faq";
 import ContactForm from "../components/contact-form/contact-form";
+import SEO from "../components/seo";
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -76,3 +77,5 @@ const IndexPage = () => {
 }
 
 export default IndexPage;
+
+export const Head = () => <SEO />
