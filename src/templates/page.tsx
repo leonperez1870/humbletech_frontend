@@ -5,6 +5,7 @@ import Faq, { FaqProps } from "../components/faq-section/faq";
 import ContactForm, { ContactUsProps } from "../components/contact-form/contact-form";
 import Layout from "./layout";
 import { allContentfulPagesType } from "../types";
+import SEO from "../components/seo";
 
 type ComponentMapType = {
   [key: string]: React.FC<any>;
@@ -50,3 +51,5 @@ const Page: React.FC<NewPageProps> = ({ pageContext }) => {
 };
 
 export default Page;
+
+export const Head = () => <SEO />
