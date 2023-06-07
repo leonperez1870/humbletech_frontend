@@ -79,6 +79,11 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
   }
 };
 
+const createShopifyProductPage = async (args: CreatePagesArgs) => {
+  const { actions, graphql } = args;
+
+}
+
 exports.createPages = async (params: CreatePagesArgs) => {
   await Promise.all([createContentfulPages(params)]);
 };
