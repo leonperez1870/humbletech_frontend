@@ -988,7 +988,7 @@ export type ContentfulSeoComponent = ContentfulReference & ContentfulEntry & Nod
   url?: Maybe<Scalars['String']>;
   openGraphTitle?: Maybe<Scalars['String']>;
   openGraphDescription?: Maybe<Scalars['String']>;
-  openGraphImage?: Maybe<ContentfulSeoComponentOpenGraphImage>;
+  openGraphImage?: Maybe<ContentfulAsset>;
   spaceId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
@@ -1012,92 +1012,6 @@ export type ContentfulSeoComponentUpdatedAtArgs = {
   fromNow?: InputMaybe<Scalars['Boolean']>;
   difference?: InputMaybe<Scalars['String']>;
   locale?: InputMaybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImage = {
-  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSys>;
-  fields?: Maybe<ContentfulSeoComponentOpenGraphImageFields>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSys = {
-  space?: Maybe<ContentfulSeoComponentOpenGraphImageSysSpace>;
-  id?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['Date']>;
-  updatedAt?: Maybe<Scalars['Date']>;
-  environment?: Maybe<ContentfulSeoComponentOpenGraphImageSysEnvironment>;
-  revision?: Maybe<Scalars['Int']>;
-};
-
-
-export type ContentfulSeoComponentOpenGraphImageSysCreatedAtArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type ContentfulSeoComponentOpenGraphImageSysUpdatedAtArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpace = {
-  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSysSpaceSys>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceSys = {
-  type?: Maybe<Scalars['String']>;
-  linkType?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironment = {
-  sys?: Maybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSys>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSys = {
-  id?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  linkType?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFields = {
-  title?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsTitle>;
-  description?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsDescription>;
-  file?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFile>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsTitle = {
-  en_US?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsDescription = {
-  en_US?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFile = {
-  en_US?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_Us>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_Us = {
-  url?: Maybe<Scalars['String']>;
-  details?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetails>;
-  fileName?: Maybe<Scalars['String']>;
-  contentType?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetails = {
-  size?: Maybe<Scalars['Int']>;
-  image?: Maybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImage>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImage = {
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
 };
 
 export type ContentfulSeoComponentSys = {
@@ -3649,7 +3563,7 @@ export type QueryContentfulSeoComponentArgs = {
   url?: InputMaybe<StringQueryOperatorInput>;
   openGraphTitle?: InputMaybe<StringQueryOperatorInput>;
   openGraphDescription?: InputMaybe<StringQueryOperatorInput>;
-  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFilterInput>;
+  openGraphImage?: InputMaybe<ContentfulAssetFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
@@ -7601,76 +7515,6 @@ export type ContentfulContactUsSectionSysContentTypeSysSortInput = {
   id?: InputMaybe<SortOrderEnum>;
 };
 
-export type ContentfulSeoComponentOpenGraphImageFilterInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysFilterInput>;
-  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysFilterInput = {
-  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceFilterInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  type?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentFilterInput>;
-  revision?: InputMaybe<IntQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceFilterInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  linkType?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentFilterInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  type?: InputMaybe<StringQueryOperatorInput>;
-  linkType?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFilterInput = {
-  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleFilterInput>;
-  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionFilterInput>;
-  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsTitleFilterInput = {
-  en_US?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionFilterInput = {
-  en_US?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileFilterInput = {
-  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFilterInput = {
-  url?: InputMaybe<StringQueryOperatorInput>;
-  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFilterInput>;
-  fileName?: InputMaybe<StringQueryOperatorInput>;
-  contentType?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFilterInput = {
-  size?: InputMaybe<IntQueryOperatorInput>;
-  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFilterInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFilterInput = {
-  width?: InputMaybe<IntQueryOperatorInput>;
-  height?: InputMaybe<IntQueryOperatorInput>;
-};
-
 export type ContentfulSeoComponentSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   revision?: InputMaybe<IntQueryOperatorInput>;
@@ -7741,7 +7585,7 @@ export type ContentfulSeoComponentFieldSelector = {
   url?: InputMaybe<FieldSelectorEnum>;
   openGraphTitle?: InputMaybe<FieldSelectorEnum>;
   openGraphDescription?: InputMaybe<FieldSelectorEnum>;
-  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldSelector>;
+  openGraphImage?: InputMaybe<ContentfulAssetFieldSelector>;
   spaceId?: InputMaybe<FieldSelectorEnum>;
   createdAt?: InputMaybe<FieldSelectorEnum>;
   updatedAt?: InputMaybe<FieldSelectorEnum>;
@@ -7749,76 +7593,6 @@ export type ContentfulSeoComponentFieldSelector = {
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
   internal?: InputMaybe<InternalFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldSelector = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysFieldSelector>;
-  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysFieldSelector = {
-  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceFieldSelector>;
-  id?: InputMaybe<FieldSelectorEnum>;
-  type?: InputMaybe<FieldSelectorEnum>;
-  createdAt?: InputMaybe<FieldSelectorEnum>;
-  updatedAt?: InputMaybe<FieldSelectorEnum>;
-  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentFieldSelector>;
-  revision?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceFieldSelector = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
-  linkType?: InputMaybe<FieldSelectorEnum>;
-  id?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentFieldSelector = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysFieldSelector = {
-  id?: InputMaybe<FieldSelectorEnum>;
-  type?: InputMaybe<FieldSelectorEnum>;
-  linkType?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFieldSelector = {
-  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleFieldSelector>;
-  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionFieldSelector>;
-  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsTitleFieldSelector = {
-  en_US?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionFieldSelector = {
-  en_US?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileFieldSelector = {
-  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsFieldSelector = {
-  url?: InputMaybe<FieldSelectorEnum>;
-  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFieldSelector>;
-  fileName?: InputMaybe<FieldSelectorEnum>;
-  contentType?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsFieldSelector = {
-  size?: InputMaybe<FieldSelectorEnum>;
-  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFieldSelector>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageFieldSelector = {
-  width?: InputMaybe<FieldSelectorEnum>;
-  height?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type ContentfulSeoComponentSysFieldSelector = {
@@ -7887,7 +7661,7 @@ export type ContentfulSeoComponentFilterInput = {
   url?: InputMaybe<StringQueryOperatorInput>;
   openGraphTitle?: InputMaybe<StringQueryOperatorInput>;
   openGraphDescription?: InputMaybe<StringQueryOperatorInput>;
-  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageFilterInput>;
+  openGraphImage?: InputMaybe<ContentfulAssetFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
@@ -7906,7 +7680,7 @@ export type ContentfulSeoComponentSortInput = {
   url?: InputMaybe<SortOrderEnum>;
   openGraphTitle?: InputMaybe<SortOrderEnum>;
   openGraphDescription?: InputMaybe<SortOrderEnum>;
-  openGraphImage?: InputMaybe<ContentfulSeoComponentOpenGraphImageSortInput>;
+  openGraphImage?: InputMaybe<ContentfulAssetSortInput>;
   spaceId?: InputMaybe<SortOrderEnum>;
   createdAt?: InputMaybe<SortOrderEnum>;
   updatedAt?: InputMaybe<SortOrderEnum>;
@@ -7914,76 +7688,6 @@ export type ContentfulSeoComponentSortInput = {
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
   internal?: InputMaybe<InternalSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSortInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSortInput>;
-  fields?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSortInput = {
-  space?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSortInput>;
-  id?: InputMaybe<SortOrderEnum>;
-  type?: InputMaybe<SortOrderEnum>;
-  createdAt?: InputMaybe<SortOrderEnum>;
-  updatedAt?: InputMaybe<SortOrderEnum>;
-  environment?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSortInput>;
-  revision?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceSortInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysSpaceSysSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysSpaceSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
-  linkType?: InputMaybe<SortOrderEnum>;
-  id?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSortInput = {
-  sys?: InputMaybe<ContentfulSeoComponentOpenGraphImageSysEnvironmentSysSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageSysEnvironmentSysSortInput = {
-  id?: InputMaybe<SortOrderEnum>;
-  type?: InputMaybe<SortOrderEnum>;
-  linkType?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsSortInput = {
-  title?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsTitleSortInput>;
-  description?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsDescriptionSortInput>;
-  file?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsTitleSortInput = {
-  en_US?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsDescriptionSortInput = {
-  en_US?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileSortInput = {
-  en_US?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsSortInput = {
-  url?: InputMaybe<SortOrderEnum>;
-  details?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsSortInput>;
-  fileName?: InputMaybe<SortOrderEnum>;
-  contentType?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsSortInput = {
-  size?: InputMaybe<SortOrderEnum>;
-  image?: InputMaybe<ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageSortInput>;
-};
-
-export type ContentfulSeoComponentOpenGraphImageFieldsFileEn_UsDetailsImageSortInput = {
-  width?: InputMaybe<SortOrderEnum>;
-  height?: InputMaybe<SortOrderEnum>;
 };
 
 export type ContentfulSeoComponentSysSortInput = {
@@ -10693,7 +10397,7 @@ export type ContentfulContentTypeSysSortInput = {
 export type SeoQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: string | null, openGraphTitle?: string | null, description?: string | null, url?: string | null, title?: string | null, openGraphImage?: { fields?: { file?: { en_US?: { url?: string | null } | null } | null } | null } | null } | null };
+export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: string | null, openGraphTitle?: string | null, description?: string | null, url?: string | null, title?: string | null, openGraphImage?: { file?: { url?: string | null } | null } | null } | null };
 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10730,3 +10434,8 @@ export type ContentfulPagesQueryQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type ContentfulPagesQueryQuery = { allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
+
+export type ProductPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductPagesQueryQuery = { allShopifyProduct: { edges: Array<{ node: { id: string, title: string, totalInventory: number, descriptionHtml: string, handle: string, featuredImage?: { gatsbyImageData?: any | null } | null, variants: Array<{ price: number, title: string, id: string }> } }> } };
