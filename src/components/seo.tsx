@@ -9,13 +9,9 @@ interface SEOProps {
   openGraphTitle?: string;
   openGraphDescription?: string;
   openGraphImage?: {
-    fields?: {
-      file?: {
-        en_US?: {
-          url?: string;
-        };
-      };
-    };
+    file: {
+      url: string;
+    }
   };
 }
 
@@ -35,12 +31,8 @@ const SEO: React.FC<SEOProps> = ({
         openGraphDescription
         openGraphTitle
         openGraphImage {
-          fields {
-            file {
-              en_US {
-                url
-              }
-            }
+          file {
+            url
           }
         }
         description
@@ -55,7 +47,7 @@ const SEO: React.FC<SEOProps> = ({
   const metaUrl = url || data.contentfulSeoComponent.url;
   const ogTitle = openGraphTitle || metaTitle;
   const ogDescription = openGraphDescription || metaDescription;
-  const ogImage = openGraphImage?.fields?.file?.en_US?.url || data.contentfulSeoComponent?.openGraphImage?.fields?.file?.en_US?.url;
+  const ogImage = openGraphImage?.file?.url || data.contentfulSeoComponent?.openGraphImage?.file?.url;
 
   const metaTags = [
     { name: "description", content: metaDescription },
