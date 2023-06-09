@@ -79,11 +79,60 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
   }
 };
 
-const createShopifyProductPage = async (args: CreatePagesArgs) => {
+const createShopifyProductPages = async (args: CreatePagesArgs) => {
   const { actions, graphql } = args;
-  
-}
+  const pageTemplate = path.resolve('./src/templates/product.tsx');
+  const res: resContentfulType = await graphql(`
+    query ProductPagesQuery {
+      allShopifyProduct {
+        edges {
+          node {
+            id
+            title
+            totalInventory
+            descriptionHtml
+            handle
+            featuredImage {
+              gatsbyImageData
+            }
+            variants {
+              price
+              title
+              id
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const nodes = res.data?.allShopifyProduct.edges;
+  const count = nodes.length;
+
+  for (let i = 0; i < count; i++) {
+    const node = nodes[i].node;
+    if (node) {
+      console.log(node)
+      actions.createPage({
+        path: `/products/${node.handle}`,
+        component: pageTemplate,
+        context: {
+          id: node.id,
+          title: node.title,
+          handle: node.handle,
+          totalInventory: node.totalInventory,
+          descriptionHtml: node.descriptionHtml,
+          featuredImage: node.featuredImage,
+          variants: node.variants
+        }
+      });
+    }
+  }
+};
 
 exports.createPages = async (params: CreatePagesArgs) => {
-  await Promise.all([createContentfulPages(params)]);
+  await Promise.all([
+    createContentfulPages(params),
+    createShopifyProductPages(params)
+  ]);
 };
