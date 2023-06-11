@@ -28,10 +28,14 @@ interface ShopContextProps {
   quantity: number;
   checkout: Checkout;
   coupon: string;
-  addToCart: (variantId: string, quantity: number) => void;
-  removeFromCart: (id: string) => void;
+  addProductToCart: (variantId: string, quantity: number) => void;
+  removeProductFromCart: (id: string) => void;
   applyCoupon: (coupon: string) => void;
   removeCoupon: (coupon: string) => void;
+}
+
+interface ShopifyProviderProps {
+  children: React.ReactNode;
 }
 
 // Client
@@ -49,8 +53,8 @@ const defaultValues: ShopContextProps = {
     id: '',
   },
   coupon: '',
-  addToCart: () => {},
-  removeFromCart: () => {},
+  addProductToCart: () => {},
+  removeProductFromCart: () => {},
   applyCoupon: () => {},
   removeCoupon: () => {},
 };
@@ -59,7 +63,7 @@ const defaultValues: ShopContextProps = {
 export const ShopContext = createContext<ShopContextProps>(defaultValues);
 
 // Provider
-export const ShopifyProvider: React.FC = ({ children }) => {
+export const ShopifyProvider: React.FC<ShopifyProviderProps> = ({ children }) => {
   const [checkout, setCheckout] = useState<Checkout>(defaultValues.checkout);
   const [coupon, setCoupon] = useState<string>('');
 
@@ -72,11 +76,11 @@ export const ShopifyProvider: React.FC = ({ children }) => {
     }
   };
 
-  const addToCart = (variantId: string, quantity: number) => {
+  const addProductToCart = (variantId: string, quantity: number) => {
     handleCheckout((checkoutId) => client.checkout.addLineItems(checkoutId, [{ variantId, quantity }]));
   };
 
-  const removeFromCart = (id: string) => {
+  const removeProductFromCart = (id: string) => {
     handleCheckout((checkoutId) => client.checkout.removeLineItems(checkoutId, [id]));
   };
 
@@ -92,23 +96,25 @@ export const ShopifyProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const initializeCheckout = async () => {
-      const checkoutId = localStorage.getItem('checkout_id');
-      let newCheckout = null;
-
-      if (checkoutId) {
-        newCheckout = await client.checkout.fetch(checkoutId);
-        if (newCheckout.completedAt) {
+      if (typeof window !== 'undefined') {
+        const checkoutId = localStorage.getItem('checkout_id');
+        let newCheckout = null;
+  
+        if (checkoutId) {
+          newCheckout = await client.checkout.fetch(checkoutId);
+          if (newCheckout.completedAt) {
+            newCheckout = await client.checkout.create();
+          }
+        } else {
           newCheckout = await client.checkout.create();
         }
-      } else {
-        newCheckout = await client.checkout.create();
+        localStorage.setItem('checkout_id', newCheckout.id);
+        setCheckout(newCheckout);
       }
-      localStorage.setItem('checkout_id', newCheckout.id);
-      setCheckout(newCheckout);
     };
-
+  
     initializeCheckout();
-  }, []);
+  }, []);  
 
   return (
     <ShopContext.Provider
@@ -116,8 +122,8 @@ export const ShopifyProvider: React.FC = ({ children }) => {
         quantity,
         checkout,
         coupon,
-        addToCart,
-        removeFromCart,
+        addProductToCart,
+        removeProductFromCart,
         applyCoupon,
         removeCoupon,
       }}
