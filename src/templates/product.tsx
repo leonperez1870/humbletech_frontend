@@ -8,6 +8,7 @@ import SEO from '../components/seo';
 interface ProductProps extends PageProps {
   pageContext: {
     id: string;
+    storefrontId: string;
     title: string;
     totalInventory: number;
     descriptionHtml: string;
@@ -17,14 +18,15 @@ interface ProductProps extends PageProps {
       price: string;
       title: string;
       id: string;
+      storefrontId: string;
     }>;
   };
 }
 
 const ProductTemplate: React.FC<ProductProps> = ({ pageContext }) => {
-  const { addToCart } = useContext(ShopContext);
+  const { addProductToCart } = useContext(ShopContext);
   const [selectedVariant, setSelectedVariant] = useState(
-    pageContext.variants && pageContext.variants.length > 0 ? pageContext.variants[0].id : ''
+    pageContext.variants && pageContext.variants.length > 0 ? pageContext.variants[0].storefrontId : ''
   );
   const image = getImage(pageContext.featuredImage);
 
@@ -48,7 +50,7 @@ const ProductTemplate: React.FC<ProductProps> = ({ pageContext }) => {
                 onChange={(e) => setSelectedVariant(e.target.value)}
               >
                 {pageContext.variants.map((variant) => (
-                  <option key={variant.id} value={variant.id}>
+                  <option key={variant.storefrontId} value={variant.storefrontId}>
                     {variant.title} - ${variant.price}
                   </option>
                 ))}
@@ -56,7 +58,9 @@ const ProductTemplate: React.FC<ProductProps> = ({ pageContext }) => {
             </div>
           )}
           <button
-            onClick={() => addToCart(selectedVariant, 1)}
+            onClick={() => {
+              addProductToCart(selectedVariant, 1)
+            }}
             className="px-8 py-4 bg-black text-white rounded text-lg"
           >
             Add to Cart
