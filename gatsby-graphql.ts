@@ -10438,4 +10438,9 @@ export type ContentfulPagesQueryQuery = { allContentfulPages: { edges: Array<{ n
 export type ProductPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductPagesQueryQuery = { allShopifyProduct: { edges: Array<{ node: { id: string, title: string, totalInventory: number, descriptionHtml: string, handle: string, featuredImage?: { gatsbyImageData?: any | null } | null, variants: Array<{ price: number, title: string, id: string }> } }> } };
+export type ProductPagesQueryQuery = { allShopifyProduct: { edges: Array<{ node: { id: string, storefrontId: string, title: string, totalInventory: number, descriptionHtml: string, handle: string, featuredImage?: { gatsbyImageData?: any | null } | null, variants: Array<{ price: number, title: string, id: string, storefrontId: string }> } }> } };
+
+export type CollectionPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CollectionPagesQueryQuery = { allShopifyCollection: { edges: Array<{ node: { title: string, handle: string, descriptionHtml: string, products: Array<{ handle: string, title: string, featuredImage?: { gatsbyImageData?: any | null } | null, priceRangeV2: { maxVariantPrice: { amount: number }, minVariantPrice: { amount: number } } }> } }> } };
