@@ -88,6 +88,7 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
         edges {
           node {
             id
+            storefrontId
             title
             totalInventory
             descriptionHtml
@@ -99,6 +100,7 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
               price
               title
               id
+              storefrontId
             }
           }
         }
@@ -112,12 +114,12 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
   for (let i = 0; i < count; i++) {
     const node = nodes[i].node;
     if (node) {
-      console.log(node)
       actions.createPage({
         path: `/products/${node.handle}`,
         component: pageTemplate,
         context: {
           id: node.id,
+          storefrontId: node.storefrontId,
           title: node.title,
           handle: node.handle,
           totalInventory: node.totalInventory,
@@ -130,9 +132,62 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
   }
 };
 
+const createShopifyCollectionPages = async (args: CreatePagesArgs) => {
+  const { actions, graphql } = args;
+  const pageTemplate = path.resolve('./src/templates/collection.tsx');
+  const res = await graphql(`
+    query CollectionPagesQuery {
+      allShopifyCollection {
+        edges {
+          node {
+            title
+            handle
+            descriptionHtml
+            products {
+              handle
+              title
+              featuredImage {
+                gatsbyImageData
+              }
+              priceRangeV2 {
+                maxVariantPrice {
+                  amount
+                }
+                minVariantPrice {
+                  amount
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const nodes = res.data?.allShopifyCollection.edges;
+  const count = nodes.length;
+
+  for (let i = 0; i < count; i++) {
+    const node = nodes[i].node;
+    if (node) {
+      actions.createPage({
+        path: `/collections/${node.handle}`,
+        component: pageTemplate,
+        context: {
+          title: node.title,
+          handle: node.handle,
+          descriptionHtml: node.descriptionHtml,
+          products: node.products
+        }
+      });
+    }
+  }
+}
+
 exports.createPages = async (params: CreatePagesArgs) => {
   await Promise.all([
     createContentfulPages(params),
-    createShopifyProductPages(params)
+    createShopifyProductPages(params),
+    createShopifyCollectionPages(params)
   ]);
 };
