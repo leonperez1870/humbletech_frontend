@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GatsbyImage, IGatsbyImageData, getImage } from 'gatsby-plugin-image';
+import './hero.scss';
 
 export interface HeroProps {
   backgroundImageDesktop: IGatsbyImageData;
@@ -7,7 +8,17 @@ export interface HeroProps {
   heading: string;
   subHeading: string;
   ctaText: string;
+  ctaText2: string;
   ctaUrl: string;
+  ctaUrl2: string;
+  allowFeatureSection: boolean;
+  featureSection: {
+    featureIcon: IGatsbyImageData;
+    heading: string;
+    subheading: string;
+    ctaText: string;
+    ctaUrl: string;
+  }[];
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -16,7 +27,11 @@ const Hero: React.FC<HeroProps> = ({
   heading,
   subHeading,
   ctaText,
-  ctaUrl
+  ctaText2,
+  ctaUrl,
+  ctaUrl2,
+  allowFeatureSection,
+  featureSection
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const desktopBgImg = getImage(backgroundImageDesktop),
@@ -32,8 +47,8 @@ const Hero: React.FC<HeroProps> = ({
   const backgroundImage = isMobile ? mobileBgImg : desktopBgImg;
 
   return (
-    <div className="Hero h-screen flex items-center justify-center bg-cover bg-center relative">
-      { backgroundImage && <GatsbyImage image={backgroundImage} alt="Background image for the hero section" className="absolute inset-0 w-full h-full z-0" style={{filter: 'brightness(0.8)'}} /> }
+    <div className="Hero flex items-center justify-center bg-cover bg-center relative">
+      { backgroundImage && <GatsbyImage image={backgroundImage} alt="Background image for the hero section" className="absolute inset-0 w-full h-full z-0" /> }
       { heading && <div className="Hero-content text-center text-white relative">
         <h1 className="text-5xl mb-4">{heading}</h1>
         { subHeading && <h2 className="text-2xl mb-8">{subHeading}</h2> }

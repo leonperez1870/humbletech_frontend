@@ -24,6 +24,22 @@ const IndexPage = () => {
             backgroundImageMobile {
               gatsbyImageData
             }
+            ctaText
+            ctaUrl
+            ctaText2
+            ctaUrl2
+            allowFeatureSection
+            featureSection {
+              featureIcon {
+                gatsbyImageData
+              }
+              heading
+              subheading {
+                subheading
+              }
+              ctaText
+              ctaUrl
+            }
           }
           ... on ContentfulImageWithText {
             id
