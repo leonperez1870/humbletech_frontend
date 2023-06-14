@@ -26,6 +26,22 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
                 }
                 heading
                 subHeading
+                ctaText
+                ctaText2
+                ctaUrl
+                ctaUrl2
+                allowFeatureSection
+                featureSection {
+                  featureIcon {
+                    gatsbyImageData
+                  }
+                  heading
+                  subheading {
+                    subheading
+                  }
+                  ctaText
+                  ctaUrl
+                }
               }
               ... on ContentfulImageWithText {
                 id
@@ -52,6 +68,13 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
                   contactSectionSubHeading
                 }
               }
+              ... on ContentfulComponentText {
+                id
+                title
+                text {
+                  raw
+                }
+              }
             }
           }
         }
@@ -66,6 +89,7 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
     const { node } = nodes[i];
     if (node) {
       const { id, title, sections, slug } = node;
+
       actions.createPage({
         path: `/${slug}`,
         component: pageTemplate,
