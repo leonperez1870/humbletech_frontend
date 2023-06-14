@@ -1,0 +1,25 @@
+.Hero {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.Hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.0);
+  z-index: 1;
+}
+
+.Hero-content {
+  position: relative; 
+  z-index: 2;
+}
