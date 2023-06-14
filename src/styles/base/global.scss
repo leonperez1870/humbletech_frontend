@@ -1,0 +1,167 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+html {
+  // Specifying height here will break the sticky header,
+  // but min-height seems to be ok.
+  min-height: 100%;
+  color: $grey-80;
+  font-family: $base-font;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  font-family: $base-font;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  line-height: 1.5;
+
+  & + & {
+    margin-top: 1rem;
+  }
+}
+
+button {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  &[disabled] {
+    opacity: 0.7;
+  }
+}
+
+form {
+  margin: 0;
+}
+
+fieldset {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  display: block;
+}
+
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+  border-radius: 0;
+
+  &[disabled] {
+    cursor: default;
+  }
+}
+
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="text"],
+textarea {
+  padding: rem-calc(16);
+  line-height: normal;
+  appearance: none;
+}
+
+::placeholder {
+  color: #b4bac3;
+  font-family: $base-font;
+}
+
+button,
+input[type="submit"],
+label[for] {
+  cursor: pointer;
+}
+
+a:hover {
+  color: $blue-bright;
+  text-decoration: underline;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+select {
+  font-family: $base-font;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id=' chevron-down'%3E%3Cpath id='Icon' fill-rule='evenodd' clip-rule='evenodd' d='M12.0002 15.5C11.7442 15.5 11.4883 15.402 11.2933 15.207L7.29325 11.207C6.90225 10.816 6.90225 10.184 7.29325 9.79301C7.68425 9.40201 8.31625 9.40201 8.70725 9.79301L12.0122 13.098L15.3053 9.91801C15.7043 9.53501 16.3352 9.54601 16.7192 9.94301C17.1032 10.34 17.0922 10.974 16.6952 11.357L12.6953 15.219C12.5002 15.407 12.2502 15.5 12.0002 15.5Z' fill='black'/%3E%3C/g%3E%3C/svg%3E%0A");
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+figure {
+  margin: 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+small {
+  font-size: 87.5%;
+}
+
+video {
+  max-width: 100%;
+}
+
+.no-scroll {
+  height: 100%;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+@media (min-width: 48em) {
+  .no-scroll {
+    height: auto;
+  }
+}

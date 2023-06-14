@@ -1,0 +1,20 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+
+  &--xl {
+    max-width: rem-calc(1360);
+  }
+
+  &--lg {
+    max-width: rem-calc(1160);
+  }
+
+  &--md {
+    max-width: rem-calc(1024);
+  }
+
+  &--sm {
+    max-width: rem-calc(600);
+  }
+}

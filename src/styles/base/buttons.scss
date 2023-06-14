@@ -1,0 +1,111 @@
+.button {
+  font-family: $base-font;
+  display: inline-block;
+  font-size: rem-calc(20);
+  line-height: rem-calc(26);
+  font-weight: 500;
+  text-align: center;
+  padding: rem-calc(15 24);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $grey-80;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &:hover {
+    color: $grey-80;
+    text-decoration: none;
+  }
+
+  &[aria-disabled],
+  &[disabled] {
+    border: 2px solid;
+    cursor: not-allowed;
+  }
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+.button--medium {
+  font-size: rem-calc(18);
+  line-height: rem-calc(22);
+  padding: rem-calc(13 24);
+}
+
+.button--small {
+  font-size: rem-calc(16);
+  line-height: rem-calc(18);
+  padding: rem-calc(11 24);
+}
+
+.button--tiny {
+  font-size: rem-calc(14);
+  line-height: rem-calc(18);
+  padding: rem-calc(7 24);
+}
+
+.button--primary {
+  background-color: $white;
+  color: $black-default;
+
+  &:hover {
+    background-color: $main-brand-color;
+    color: white;
+  }
+
+  &[aria-disabled],
+  &[disabled] {
+    background-color: $grey-40;
+    color: $black;
+    border-color: $main-brand-color;
+		opacity: 1;
+  }
+}
+
+.button--secondary {
+  background-color: $main-brand-color;
+  color: white;
+  border: 1px solid white;
+
+  &:hover {
+    background-color: $white;
+    color: $black-default;
+  }
+
+  &[aria-disabled],
+  &[disabled] {
+    background-color: $grey-40;
+    color: $black;
+    border-color: $main-brand-color;
+  }
+}
+
+.text-button {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: $blue-bright;
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  svg {
+    margin: rem-calc(0 8);
+
+    path {
+      fill: $dark-accent;
+    }
+  }
+
+  &--icon-left {
+    svg {
+      margin: rem-calc(0 8 0 0);
+    }
+  }
+}

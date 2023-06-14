@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+
+@import '@fontsource/lato/400';
+@import '@fontsource/lato/700';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import "base/variables";
+@import "base/functions";
+@import "base/mixins";
+
+@import "base/global";
+@import "base/utility";
+@import "base/typography";
+@import "base/containers";
+@import "base/buttons";
+@import "base/icons";
+
+@import "components/**/*";
+@import "pages/**/*";
+@import "templates/**/*";

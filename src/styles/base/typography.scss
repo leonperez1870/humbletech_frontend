@@ -1,0 +1,128 @@
+h1,
+.h1 {
+  font-size: rem-calc(34);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+}
+
+h2,
+.h2 {
+  font-size: rem-calc(30);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+}
+
+h3,
+.h3 {
+  font-size: rem-calc(26);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+}
+
+h4,
+.h4 {
+  font-size: rem-calc(24);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+}
+
+h5,
+.h5 {
+  font-size: rem-calc(20);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+}
+
+h6,
+.h6 {
+  font-size: rem-calc(16);
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: $base-font;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.heading--huge {
+  font-size: rem-calc(36);
+  font-weight: 600;
+}
+
+.text--focus {
+  font-size: rem-calc(28);
+  font-weight: 600;
+  text-transform: none;
+}
+
+.text--p1 {
+  font-size: rem-calc(20);
+  line-height: 1.5;
+}
+
+.text--p2 {
+  font-size: rem-calc(16);
+}
+
+.text--p3 {
+  font-size: rem-calc(16);
+  line-height: 1.625;
+}
+
+.text--sm {
+  font-size: rem-calc(15);
+}
+
+.text--xs {
+  font-size: rem-calc(14);
+}
+
+.text--xxs {
+  font-size: rem-calc(12);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.text--label {
+  font-size: rem-calc(18);
+  font-weight: 600;
+}
+
+.text--regular {
+  font-weight: 400;
+}
+
+.text--bold {
+  font-weight: 600;
+}
+
+.text--italic {
+  font-style: italic;
+}
+
+.text--accent {
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+@media (min-width: 30em) {
+  .heading--huge {
+    font-size: rem-calc(52);
+  }
+}
+
+@media (min-width: 48em) {
+  .heading--huge {
+    font-size: rem-calc(62);
+  }
+}
