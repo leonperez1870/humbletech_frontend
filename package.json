@@ -7,7 +7,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -17,6 +17,7 @@
     "ggl-types:watch": "graphql-codegen --config codegen.yml -w"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.0.3",
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
@@ -66,8 +67,8 @@
     "gatsby-plugin-ts-config": "^2.1.3",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
+    "shopify-buy": "^2.19.0",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.4",
-    "shopify-buy": "^2.19.0"
+    "typescript": "^5.0.4"
   }
 }
