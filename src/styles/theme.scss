@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
-@import '@fontsource/lato/400';
-@import '@fontsource/lato/700';
+@import '@fontsource/lato/400.css';
+@import '@fontsource/lato/700.css';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -16,7 +16,3 @@
 @import "base/containers";
 @import "base/buttons";
 @import "base/icons";
-
-@import "components/**/*";
-@import "pages/**/*";
-@import "templates/**/*";
