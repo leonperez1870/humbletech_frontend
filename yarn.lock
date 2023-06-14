@@ -1668,6 +1668,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.41.0.tgz#080321c3b68253522f7646b55b577dd99d2950b3"
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
+"@fontsource/lato@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/lato/-/lato-5.0.3.tgz#4d45be36c3b949844bbed5d679f8272e3149ba41"
+  integrity sha512-5rfhzbJyFVKvfDhSeyBhfixX2VogW7LpGCB94kRHuxVBfzdXa3a8ovOR/fkXb+24NGiQd0cSnxQHTcBGjqjJOw==
+
 "@gatsbyjs/parcel-namer-relative-to-cwd@^2.10.0":
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/@gatsbyjs/parcel-namer-relative-to-cwd/-/parcel-namer-relative-to-cwd-2.10.0.tgz#3ad8ba465cde801282809559190893aab1f42e8e"
