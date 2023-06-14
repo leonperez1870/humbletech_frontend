@@ -1,4 +1,4 @@
-import './src/styles/global.scss';
+import './src/styles/theme.scss';
 import React from 'react';
 import { ShopifyProvider } from './src/utils/shopify/shop';
 
