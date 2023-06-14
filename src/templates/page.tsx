@@ -3,8 +3,9 @@ import Hero, { HeroProps } from "../components/hero/hero";
 import ImgWithText, { ImgWithTextProps } from "../components/image-w-text/image-w-text";
 import Faq, { FaqProps } from "../components/faq-section/faq";
 import ContactForm, { ContactUsProps } from "../components/contact-form/contact-form";
+import TextWithDescription, { TextWithDescriptionProps } from "../components/text-w-description/text-w-description";
 import Layout from "./layout";
-import { allContentfulPagesType } from "../types";
+import { ContentfulPagesQueryQuery } from "../../gatsby-graphql";
 import SEO from "../components/seo";
 
 type ComponentMapType = {
@@ -13,6 +14,7 @@ type ComponentMapType = {
   ContentfulImageWithText: React.FC<ImgWithTextProps>;
   ContentfulFaqSection: React.FC<FaqProps>;
   ContentfulContactUsSection: React.FC<ContactUsProps>;
+  ContentfulComponentText: React.FC<TextWithDescriptionProps>;
 };
 
 const COMPONENT_MAP: ComponentMapType = {
@@ -20,9 +22,10 @@ const COMPONENT_MAP: ComponentMapType = {
   ContentfulImageWithText: ImgWithText,
   ContentfulFaqSection: Faq,
   ContentfulContactUsSection: ContactForm,
+  ContentfulComponentText: TextWithDescription
 };
 
-interface NewPageProps extends allContentfulPagesType {
+interface NewPageProps extends ContentfulPagesQueryQuery {
   pageContext: {
     sections: {
       __typename: string;
