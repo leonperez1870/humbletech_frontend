@@ -636,6 +636,7 @@ export type ContentfulComponentText = ContentfulReference & ContentfulEntry & No
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
   sys?: Maybe<ContentfulComponentTextSys>;
+  pages?: Maybe<Array<Maybe<ContentfulPages>>>;
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
@@ -683,7 +684,7 @@ export type ContentfulPages = ContentfulReference & ContentfulEntry & Node & {
   node_locale: Scalars['String'];
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  sections?: Maybe<Array<Maybe<ContentfulContactUsSectionContentfulFaqSectionContentfulHeroContentfulImageWithTextUnion>>>;
+  sections?: Maybe<Array<Maybe<ContentfulComponentTextContentfulContactUsSectionContentfulFaqSectionContentfulHeroContentfulImageWithTextUnion>>>;
   spaceId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
@@ -709,7 +710,7 @@ export type ContentfulPagesUpdatedAtArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
-export type ContentfulContactUsSectionContentfulFaqSectionContentfulHeroContentfulImageWithTextUnion = ContentfulContactUsSection | ContentfulFaqSection | ContentfulHero | ContentfulImageWithText;
+export type ContentfulComponentTextContentfulContactUsSectionContentfulFaqSectionContentfulHeroContentfulImageWithTextUnion = ContentfulComponentText | ContentfulContactUsSection | ContentfulFaqSection | ContentfulHero | ContentfulImageWithText;
 
 export type ContentfulPagesSys = {
   type?: Maybe<Scalars['String']>;
@@ -740,6 +741,12 @@ export type ContentfulHero = ContentfulReference & ContentfulEntry & Node & {
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
   sys?: Maybe<ContentfulHeroSys>;
+  ctaText?: Maybe<Scalars['String']>;
+  ctaUrl?: Maybe<Scalars['String']>;
+  ctaText2?: Maybe<Scalars['String']>;
+  ctaUrl2?: Maybe<Scalars['String']>;
+  allowFeatureSection?: Maybe<Scalars['Boolean']>;
+  featureSection?: Maybe<Array<Maybe<ContentfulFeatureItem>>>;
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
@@ -1025,6 +1032,61 @@ export type ContentfulSeoComponentSysContentType = {
 };
 
 export type ContentfulSeoComponentSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulFeatureItem = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  heading?: Maybe<Scalars['String']>;
+  ctaText?: Maybe<Scalars['String']>;
+  ctaUrl?: Maybe<Scalars['String']>;
+  featureIcon?: Maybe<ContentfulAsset>;
+  subheading?: Maybe<ContentfulFeatureItemSubheadingTextNode>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulFeatureItemSys>;
+  hero?: Maybe<Array<Maybe<ContentfulHero>>>;
+  /** Returns all children nodes filtered by type contentfulFeatureItemSubheadingTextNode */
+  childrenContentfulFeatureItemSubheadingTextNode?: Maybe<Array<Maybe<ContentfulFeatureItemSubheadingTextNode>>>;
+  /** Returns the first child node of type contentfulFeatureItemSubheadingTextNode or null if there are no children of given type on this node */
+  childContentfulFeatureItemSubheadingTextNode?: Maybe<ContentfulFeatureItemSubheadingTextNode>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulFeatureItemCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulFeatureItemUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulFeatureItemSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulFeatureItemSysContentType>;
+};
+
+export type ContentfulFeatureItemSysContentType = {
+  sys?: Maybe<ContentfulFeatureItemSysContentTypeSys>;
+};
+
+export type ContentfulFeatureItemSysContentTypeSys = {
   type?: Maybe<Scalars['String']>;
   linkType?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -2954,6 +3016,23 @@ export type ImageSharpResize = {
   originalName?: Maybe<Scalars['String']>;
 };
 
+export type ContentfulFeatureItemSubheadingTextNode = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  subheading?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulFeatureItemSubheadingTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeSys = {
+  type?: Maybe<Scalars['String']>;
+};
+
 export type ContentfulFaqItemAnswerTextNode = Node & {
   id: Scalars['ID'];
   parent?: Maybe<Node>;
@@ -3040,6 +3119,8 @@ export type Query = {
   allContentfulContactUsSection: ContentfulContactUsSectionConnection;
   contentfulSeoComponent?: Maybe<ContentfulSeoComponent>;
   allContentfulSeoComponent: ContentfulSeoComponentConnection;
+  contentfulFeatureItem?: Maybe<ContentfulFeatureItem>;
+  allContentfulFeatureItem: ContentfulFeatureItemConnection;
   shopifyExternalVideo?: Maybe<ShopifyExternalVideo>;
   allShopifyExternalVideo: ShopifyExternalVideoConnection;
   shopifyMedia?: Maybe<ShopifyMedia>;
@@ -3070,6 +3151,8 @@ export type Query = {
   allMarkdownRemark: MarkdownRemarkConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
+  contentfulFeatureItemSubheadingTextNode?: Maybe<ContentfulFeatureItemSubheadingTextNode>;
+  allContentfulFeatureItemSubheadingTextNode: ContentfulFeatureItemSubheadingTextNodeConnection;
   contentfulFaqItemAnswerTextNode?: Maybe<ContentfulFaqItemAnswerTextNode>;
   allContentfulFaqItemAnswerTextNode: ContentfulFaqItemAnswerTextNodeConnection;
   contentfulContactUsSectionContactSectionSubHeadingTextNode?: Maybe<ContentfulContactUsSectionContactSectionSubHeadingTextNode>;
@@ -3383,6 +3466,7 @@ export type QueryContentfulComponentTextArgs = {
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
   sys?: InputMaybe<ContentfulComponentTextSysFilterInput>;
+  pages?: InputMaybe<ContentfulPagesFilterListInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
@@ -3434,6 +3518,12 @@ export type QueryContentfulHeroArgs = {
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
   sys?: InputMaybe<ContentfulHeroSysFilterInput>;
+  ctaText?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl?: InputMaybe<StringQueryOperatorInput>;
+  ctaText2?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl2?: InputMaybe<StringQueryOperatorInput>;
+  allowFeatureSection?: InputMaybe<BooleanQueryOperatorInput>;
+  featureSection?: InputMaybe<ContentfulFeatureItemFilterListInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
@@ -3577,6 +3667,36 @@ export type QueryContentfulSeoComponentArgs = {
 export type QueryAllContentfulSeoComponentArgs = {
   filter?: InputMaybe<ContentfulSeoComponentFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ContentfulSeoComponentSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulFeatureItemArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  heading?: InputMaybe<StringQueryOperatorInput>;
+  ctaText?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl?: InputMaybe<StringQueryOperatorInput>;
+  featureIcon?: InputMaybe<ContentfulAssetFilterInput>;
+  subheading?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulFeatureItemSysFilterInput>;
+  hero?: InputMaybe<ContentfulHeroFilterListInput>;
+  childrenContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterListInput>;
+  childContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulFeatureItemArgs = {
+  filter?: InputMaybe<ContentfulFeatureItemFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulFeatureItemSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -4002,6 +4122,26 @@ export type QueryImageSharpArgs = {
 export type QueryAllImageSharpArgs = {
   filter?: InputMaybe<ImageSharpFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ImageSharpSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulFeatureItemSubheadingTextNodeArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  subheading?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+
+export type QueryAllContentfulFeatureItemSubheadingTextNodeArgs = {
+  filter?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulFeatureItemSubheadingTextNodeSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -5813,6 +5953,7 @@ export type ContentfulComponentTextFilterInput = {
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
   sys?: InputMaybe<ContentfulComponentTextSysFilterInput>;
+  pages?: InputMaybe<ContentfulPagesFilterListInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
@@ -5870,6 +6011,41 @@ export type ContentfulComponentTextSysContentTypeFilterInput = {
 };
 
 export type ContentfulComponentTextSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulPagesFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulPagesFilterInput>;
+};
+
+export type ContentfulPagesFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  slug?: InputMaybe<StringQueryOperatorInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPagesSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulPagesSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulPagesSysContentTypeFilterInput>;
+};
+
+export type ContentfulPagesSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulPagesSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulPagesSysContentTypeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   linkType?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
@@ -5948,6 +6124,7 @@ export type ContentfulComponentTextFieldSelector = {
   createdAt?: InputMaybe<FieldSelectorEnum>;
   updatedAt?: InputMaybe<FieldSelectorEnum>;
   sys?: InputMaybe<ContentfulComponentTextSysFieldSelector>;
+  pages?: InputMaybe<ContentfulPagesFieldSelector>;
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
   internal?: InputMaybe<InternalFieldSelector>;
@@ -5968,6 +6145,37 @@ export type ContentfulComponentTextSysContentTypeFieldSelector = {
 };
 
 export type ContentfulComponentTextSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulPagesFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  title?: InputMaybe<FieldSelectorEnum>;
+  slug?: InputMaybe<FieldSelectorEnum>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPagesSysFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulPagesSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulPagesSysContentTypeFieldSelector>;
+};
+
+export type ContentfulPagesSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulPagesSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulPagesSysContentTypeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
   linkType?: InputMaybe<FieldSelectorEnum>;
   id?: InputMaybe<FieldSelectorEnum>;
@@ -6058,6 +6266,7 @@ export type ContentfulComponentTextSortInput = {
   createdAt?: InputMaybe<SortOrderEnum>;
   updatedAt?: InputMaybe<SortOrderEnum>;
   sys?: InputMaybe<ContentfulComponentTextSysSortInput>;
+  pages?: InputMaybe<ContentfulPagesSortInput>;
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
   internal?: InputMaybe<InternalSortInput>;
@@ -6078,6 +6287,37 @@ export type ContentfulComponentTextSysContentTypeSortInput = {
 };
 
 export type ContentfulComponentTextSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulPagesSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  title?: InputMaybe<SortOrderEnum>;
+  slug?: InputMaybe<SortOrderEnum>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPagesSysSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulPagesSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulPagesSysContentTypeSortInput>;
+};
+
+export type ContentfulPagesSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulPagesSysContentTypeSysSortInput>;
+};
+
+export type ContentfulPagesSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
@@ -6185,22 +6425,6 @@ export type ContentfulComponentTextGroupConnectionGroupArgs = {
   field: ContentfulComponentTextFieldSelector;
 };
 
-export type ContentfulPagesSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  revision?: InputMaybe<IntQueryOperatorInput>;
-  contentType?: InputMaybe<ContentfulPagesSysContentTypeFilterInput>;
-};
-
-export type ContentfulPagesSysContentTypeFilterInput = {
-  sys?: InputMaybe<ContentfulPagesSysContentTypeSysFilterInput>;
-};
-
-export type ContentfulPagesSysContentTypeSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
-  linkType?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-};
-
 export type ContentfulPagesConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ContentfulPagesEdge>;
@@ -6246,37 +6470,6 @@ export type ContentfulPagesEdge = {
   previous?: Maybe<ContentfulPages>;
 };
 
-export type ContentfulPagesFieldSelector = {
-  contentful_id?: InputMaybe<FieldSelectorEnum>;
-  id?: InputMaybe<FieldSelectorEnum>;
-  node_locale?: InputMaybe<FieldSelectorEnum>;
-  title?: InputMaybe<FieldSelectorEnum>;
-  slug?: InputMaybe<FieldSelectorEnum>;
-  spaceId?: InputMaybe<FieldSelectorEnum>;
-  createdAt?: InputMaybe<FieldSelectorEnum>;
-  updatedAt?: InputMaybe<FieldSelectorEnum>;
-  sys?: InputMaybe<ContentfulPagesSysFieldSelector>;
-  parent?: InputMaybe<NodeFieldSelector>;
-  children?: InputMaybe<NodeFieldSelector>;
-  internal?: InputMaybe<InternalFieldSelector>;
-};
-
-export type ContentfulPagesSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
-  revision?: InputMaybe<FieldSelectorEnum>;
-  contentType?: InputMaybe<ContentfulPagesSysContentTypeFieldSelector>;
-};
-
-export type ContentfulPagesSysContentTypeFieldSelector = {
-  sys?: InputMaybe<ContentfulPagesSysContentTypeSysFieldSelector>;
-};
-
-export type ContentfulPagesSysContentTypeSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
-  linkType?: InputMaybe<FieldSelectorEnum>;
-  id?: InputMaybe<FieldSelectorEnum>;
-};
-
 export type ContentfulPagesGroupConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ContentfulPagesEdge>;
@@ -6318,56 +6511,6 @@ export type ContentfulPagesGroupConnectionGroupArgs = {
   field: ContentfulPagesFieldSelector;
 };
 
-export type ContentfulPagesFilterInput = {
-  contentful_id?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  node_locale?: InputMaybe<StringQueryOperatorInput>;
-  title?: InputMaybe<StringQueryOperatorInput>;
-  slug?: InputMaybe<StringQueryOperatorInput>;
-  spaceId?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulPagesSysFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
-export type ContentfulPagesSortInput = {
-  contentful_id?: InputMaybe<SortOrderEnum>;
-  id?: InputMaybe<SortOrderEnum>;
-  node_locale?: InputMaybe<SortOrderEnum>;
-  title?: InputMaybe<SortOrderEnum>;
-  slug?: InputMaybe<SortOrderEnum>;
-  spaceId?: InputMaybe<SortOrderEnum>;
-  createdAt?: InputMaybe<SortOrderEnum>;
-  updatedAt?: InputMaybe<SortOrderEnum>;
-  sys?: InputMaybe<ContentfulPagesSysSortInput>;
-  parent?: InputMaybe<NodeSortInput>;
-  children?: InputMaybe<NodeSortInput>;
-  internal?: InputMaybe<InternalSortInput>;
-};
-
-export type ContentfulPagesSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
-  revision?: InputMaybe<SortOrderEnum>;
-  contentType?: InputMaybe<ContentfulPagesSysContentTypeSortInput>;
-};
-
-export type ContentfulPagesSysContentTypeSortInput = {
-  sys?: InputMaybe<ContentfulPagesSysContentTypeSysSortInput>;
-};
-
-export type ContentfulPagesSysContentTypeSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
-  linkType?: InputMaybe<SortOrderEnum>;
-  id?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulPagesFilterListInput = {
-  elemMatch?: InputMaybe<ContentfulPagesFilterInput>;
-};
-
 export type ContentfulHeroSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   revision?: InputMaybe<IntQueryOperatorInput>;
@@ -6382,6 +6525,135 @@ export type ContentfulHeroSysContentTypeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   linkType?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulFeatureItemFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulFeatureItemFilterInput>;
+};
+
+export type ContentfulFeatureItemFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  heading?: InputMaybe<StringQueryOperatorInput>;
+  ctaText?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl?: InputMaybe<StringQueryOperatorInput>;
+  featureIcon?: InputMaybe<ContentfulAssetFilterInput>;
+  subheading?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulFeatureItemSysFilterInput>;
+  hero?: InputMaybe<ContentfulHeroFilterListInput>;
+  childrenContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterListInput>;
+  childContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  subheading?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownRemarkFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type MarkdownRemarkFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatterFilterInput = {
+  title?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
+};
+
+export type MarkdownHeadingFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  value?: InputMaybe<StringQueryOperatorInput>;
+  depth?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MarkdownWordCountFilterInput = {
+  paragraphs?: InputMaybe<IntQueryOperatorInput>;
+  sentences?: InputMaybe<IntQueryOperatorInput>;
+  words?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulFeatureItemSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulFeatureItemSysContentTypeFilterInput>;
+};
+
+export type ContentfulFeatureItemSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulFeatureItemSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulFeatureItemSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulHeroFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulHeroFilterInput>;
+};
+
+export type ContentfulHeroFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  heading?: InputMaybe<StringQueryOperatorInput>;
+  subHeading?: InputMaybe<StringQueryOperatorInput>;
+  backgroundImageDesktop?: InputMaybe<ContentfulAssetFilterInput>;
+  backgroundImageMobile?: InputMaybe<ContentfulAssetFilterInput>;
+  pages?: InputMaybe<ContentfulPagesFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulHeroSysFilterInput>;
+  ctaText?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl?: InputMaybe<StringQueryOperatorInput>;
+  ctaText2?: InputMaybe<StringQueryOperatorInput>;
+  ctaUrl2?: InputMaybe<StringQueryOperatorInput>;
+  allowFeatureSection?: InputMaybe<BooleanQueryOperatorInput>;
+  featureSection?: InputMaybe<ContentfulFeatureItemFilterListInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFilterInput>;
 };
 
 export type ContentfulHeroConnection = {
@@ -6442,6 +6714,12 @@ export type ContentfulHeroFieldSelector = {
   createdAt?: InputMaybe<FieldSelectorEnum>;
   updatedAt?: InputMaybe<FieldSelectorEnum>;
   sys?: InputMaybe<ContentfulHeroSysFieldSelector>;
+  ctaText?: InputMaybe<FieldSelectorEnum>;
+  ctaUrl?: InputMaybe<FieldSelectorEnum>;
+  ctaText2?: InputMaybe<FieldSelectorEnum>;
+  ctaUrl2?: InputMaybe<FieldSelectorEnum>;
+  allowFeatureSection?: InputMaybe<FieldSelectorEnum>;
+  featureSection?: InputMaybe<ContentfulFeatureItemFieldSelector>;
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
   internal?: InputMaybe<InternalFieldSelector>;
@@ -6458,6 +6736,91 @@ export type ContentfulHeroSysContentTypeFieldSelector = {
 };
 
 export type ContentfulHeroSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulFeatureItemFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  heading?: InputMaybe<FieldSelectorEnum>;
+  ctaText?: InputMaybe<FieldSelectorEnum>;
+  ctaUrl?: InputMaybe<FieldSelectorEnum>;
+  featureIcon?: InputMaybe<ContentfulAssetFieldSelector>;
+  subheading?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulFeatureItemSysFieldSelector>;
+  hero?: InputMaybe<ContentfulHeroFieldSelector>;
+  childrenContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFieldSelector>;
+  childContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  subheading?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownRemarkFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFieldSelector>;
+  excerpt?: InputMaybe<FieldSelectorEnum>;
+  rawMarkdownBody?: InputMaybe<FieldSelectorEnum>;
+  html?: InputMaybe<FieldSelectorEnum>;
+  htmlAst?: InputMaybe<FieldSelectorEnum>;
+  excerptAst?: InputMaybe<FieldSelectorEnum>;
+  headings?: InputMaybe<MarkdownHeadingFieldSelector>;
+  timeToRead?: InputMaybe<FieldSelectorEnum>;
+  tableOfContents?: InputMaybe<FieldSelectorEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type MarkdownRemarkFrontmatterFieldSelector = {
+  title?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownHeadingFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  value?: InputMaybe<FieldSelectorEnum>;
+  depth?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownWordCountFieldSelector = {
+  paragraphs?: InputMaybe<FieldSelectorEnum>;
+  sentences?: InputMaybe<FieldSelectorEnum>;
+  words?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulFeatureItemSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulFeatureItemSysContentTypeFieldSelector>;
+};
+
+export type ContentfulFeatureItemSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulFeatureItemSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulFeatureItemSysContentTypeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
   linkType?: InputMaybe<FieldSelectorEnum>;
   id?: InputMaybe<FieldSelectorEnum>;
@@ -6504,24 +6867,6 @@ export type ContentfulHeroGroupConnectionGroupArgs = {
   field: ContentfulHeroFieldSelector;
 };
 
-export type ContentfulHeroFilterInput = {
-  contentful_id?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  node_locale?: InputMaybe<StringQueryOperatorInput>;
-  heading?: InputMaybe<StringQueryOperatorInput>;
-  subHeading?: InputMaybe<StringQueryOperatorInput>;
-  backgroundImageDesktop?: InputMaybe<ContentfulAssetFilterInput>;
-  backgroundImageMobile?: InputMaybe<ContentfulAssetFilterInput>;
-  pages?: InputMaybe<ContentfulPagesFilterListInput>;
-  spaceId?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulHeroSysFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
 export type ContentfulHeroSortInput = {
   contentful_id?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
@@ -6535,6 +6880,12 @@ export type ContentfulHeroSortInput = {
   createdAt?: InputMaybe<SortOrderEnum>;
   updatedAt?: InputMaybe<SortOrderEnum>;
   sys?: InputMaybe<ContentfulHeroSysSortInput>;
+  ctaText?: InputMaybe<SortOrderEnum>;
+  ctaUrl?: InputMaybe<SortOrderEnum>;
+  ctaText2?: InputMaybe<SortOrderEnum>;
+  ctaUrl2?: InputMaybe<SortOrderEnum>;
+  allowFeatureSection?: InputMaybe<SortOrderEnum>;
+  featureSection?: InputMaybe<ContentfulFeatureItemSortInput>;
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
   internal?: InputMaybe<InternalSortInput>;
@@ -6551,6 +6902,91 @@ export type ContentfulHeroSysContentTypeSortInput = {
 };
 
 export type ContentfulHeroSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulFeatureItemSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  heading?: InputMaybe<SortOrderEnum>;
+  ctaText?: InputMaybe<SortOrderEnum>;
+  ctaUrl?: InputMaybe<SortOrderEnum>;
+  featureIcon?: InputMaybe<ContentfulAssetSortInput>;
+  subheading?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulFeatureItemSysSortInput>;
+  hero?: InputMaybe<ContentfulHeroSortInput>;
+  childrenContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSortInput>;
+  childContentfulFeatureItemSubheadingTextNode?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  subheading?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulFeatureItemSubheadingTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownRemarkSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterSortInput>;
+  excerpt?: InputMaybe<SortOrderEnum>;
+  rawMarkdownBody?: InputMaybe<SortOrderEnum>;
+  html?: InputMaybe<SortOrderEnum>;
+  htmlAst?: InputMaybe<SortOrderEnum>;
+  excerptAst?: InputMaybe<SortOrderEnum>;
+  headings?: InputMaybe<MarkdownHeadingSortInput>;
+  timeToRead?: InputMaybe<SortOrderEnum>;
+  tableOfContents?: InputMaybe<SortOrderEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type MarkdownRemarkFrontmatterSortInput = {
+  title?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownHeadingSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  value?: InputMaybe<SortOrderEnum>;
+  depth?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownWordCountSortInput = {
+  paragraphs?: InputMaybe<SortOrderEnum>;
+  sentences?: InputMaybe<SortOrderEnum>;
+  words?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulFeatureItemSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulFeatureItemSysContentTypeSortInput>;
+};
+
+export type ContentfulFeatureItemSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulFeatureItemSysContentTypeSysSortInput>;
+};
+
+export type ContentfulFeatureItemSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
@@ -6817,47 +7253,6 @@ export type ContentfulFaqItemAnswerTextNodeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
 };
 
-export type MarkdownRemarkFilterListInput = {
-  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
-};
-
-export type MarkdownRemarkFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
-  html?: InputMaybe<StringQueryOperatorInput>;
-  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
-  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
-  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
-  timeToRead?: InputMaybe<IntQueryOperatorInput>;
-  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
-  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
-export type MarkdownRemarkFrontmatterFilterInput = {
-  title?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type MarkdownHeadingFilterListInput = {
-  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
-};
-
-export type MarkdownHeadingFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  value?: InputMaybe<StringQueryOperatorInput>;
-  depth?: InputMaybe<IntQueryOperatorInput>;
-};
-
-export type MarkdownWordCountFilterInput = {
-  paragraphs?: InputMaybe<IntQueryOperatorInput>;
-  sentences?: InputMaybe<IntQueryOperatorInput>;
-  words?: InputMaybe<IntQueryOperatorInput>;
-};
-
 export type ContentfulFaqItemSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   revision?: InputMaybe<IntQueryOperatorInput>;
@@ -6970,39 +7365,6 @@ export type ContentfulFaqItemAnswerTextNodeFieldSelector = {
 
 export type ContentfulFaqItemAnswerTextNodeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type MarkdownRemarkFieldSelector = {
-  id?: InputMaybe<FieldSelectorEnum>;
-  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFieldSelector>;
-  excerpt?: InputMaybe<FieldSelectorEnum>;
-  rawMarkdownBody?: InputMaybe<FieldSelectorEnum>;
-  html?: InputMaybe<FieldSelectorEnum>;
-  htmlAst?: InputMaybe<FieldSelectorEnum>;
-  excerptAst?: InputMaybe<FieldSelectorEnum>;
-  headings?: InputMaybe<MarkdownHeadingFieldSelector>;
-  timeToRead?: InputMaybe<FieldSelectorEnum>;
-  tableOfContents?: InputMaybe<FieldSelectorEnum>;
-  wordCount?: InputMaybe<MarkdownWordCountFieldSelector>;
-  parent?: InputMaybe<NodeFieldSelector>;
-  children?: InputMaybe<NodeFieldSelector>;
-  internal?: InputMaybe<InternalFieldSelector>;
-};
-
-export type MarkdownRemarkFrontmatterFieldSelector = {
-  title?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type MarkdownHeadingFieldSelector = {
-  id?: InputMaybe<FieldSelectorEnum>;
-  value?: InputMaybe<FieldSelectorEnum>;
-  depth?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type MarkdownWordCountFieldSelector = {
-  paragraphs?: InputMaybe<FieldSelectorEnum>;
-  sentences?: InputMaybe<FieldSelectorEnum>;
-  words?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type ContentfulFaqItemSysFieldSelector = {
@@ -7125,39 +7487,6 @@ export type ContentfulFaqItemAnswerTextNodeSortInput = {
 
 export type ContentfulFaqItemAnswerTextNodeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
-};
-
-export type MarkdownRemarkSortInput = {
-  id?: InputMaybe<SortOrderEnum>;
-  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterSortInput>;
-  excerpt?: InputMaybe<SortOrderEnum>;
-  rawMarkdownBody?: InputMaybe<SortOrderEnum>;
-  html?: InputMaybe<SortOrderEnum>;
-  htmlAst?: InputMaybe<SortOrderEnum>;
-  excerptAst?: InputMaybe<SortOrderEnum>;
-  headings?: InputMaybe<MarkdownHeadingSortInput>;
-  timeToRead?: InputMaybe<SortOrderEnum>;
-  tableOfContents?: InputMaybe<SortOrderEnum>;
-  wordCount?: InputMaybe<MarkdownWordCountSortInput>;
-  parent?: InputMaybe<NodeSortInput>;
-  children?: InputMaybe<NodeSortInput>;
-  internal?: InputMaybe<InternalSortInput>;
-};
-
-export type MarkdownRemarkFrontmatterSortInput = {
-  title?: InputMaybe<SortOrderEnum>;
-};
-
-export type MarkdownHeadingSortInput = {
-  id?: InputMaybe<SortOrderEnum>;
-  value?: InputMaybe<SortOrderEnum>;
-  depth?: InputMaybe<SortOrderEnum>;
-};
-
-export type MarkdownWordCountSortInput = {
-  paragraphs?: InputMaybe<SortOrderEnum>;
-  sentences?: InputMaybe<SortOrderEnum>;
-  words?: InputMaybe<SortOrderEnum>;
 };
 
 export type ContentfulFaqItemSysSortInput = {
@@ -7704,6 +8033,92 @@ export type ContentfulSeoComponentSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulFeatureItemConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulFeatureItemEdge>;
+  nodes: Array<ContentfulFeatureItem>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulFeatureItemGroupConnection>;
+};
+
+
+export type ContentfulFeatureItemConnectionDistinctArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemConnectionMaxArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemConnectionMinArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemConnectionSumArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+export type ContentfulFeatureItemEdge = {
+  next?: Maybe<ContentfulFeatureItem>;
+  node: ContentfulFeatureItem;
+  previous?: Maybe<ContentfulFeatureItem>;
+};
+
+export type ContentfulFeatureItemGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulFeatureItemEdge>;
+  nodes: Array<ContentfulFeatureItem>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulFeatureItemGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulFeatureItemGroupConnectionDistinctArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemGroupConnectionMaxArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemGroupConnectionMinArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemGroupConnectionSumArgs = {
+  field: ContentfulFeatureItemFieldSelector;
+};
+
+
+export type ContentfulFeatureItemGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulFeatureItemFieldSelector;
 };
 
 export type ShopifyMediaHostQueryOperatorInput = {
@@ -10091,6 +10506,92 @@ export type ImageSharpGroupConnectionGroupArgs = {
   field: ImageSharpFieldSelector;
 };
 
+export type ContentfulFeatureItemSubheadingTextNodeConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulFeatureItemSubheadingTextNodeEdge>;
+  nodes: Array<ContentfulFeatureItemSubheadingTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulFeatureItemSubheadingTextNodeGroupConnection>;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeConnectionDistinctArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeConnectionMaxArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeConnectionMinArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeConnectionSumArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeEdge = {
+  next?: Maybe<ContentfulFeatureItemSubheadingTextNode>;
+  node: ContentfulFeatureItemSubheadingTextNode;
+  previous?: Maybe<ContentfulFeatureItemSubheadingTextNode>;
+};
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulFeatureItemSubheadingTextNodeEdge>;
+  nodes: Array<ContentfulFeatureItemSubheadingTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulFeatureItemSubheadingTextNodeGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnectionDistinctArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnectionMaxArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnectionMinArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnectionSumArgs = {
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
+
+export type ContentfulFeatureItemSubheadingTextNodeGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulFeatureItemSubheadingTextNodeFieldSelector;
+};
+
 export type ContentfulFaqItemAnswerTextNodeConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ContentfulFaqItemAnswerTextNodeEdge>;
@@ -10402,7 +10903,7 @@ export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null };
+export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText' } | { __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaUrl?: string | null, ctaText2?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
@@ -10433,7 +10934,7 @@ export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: num
 export type ContentfulPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ContentfulPagesQueryQuery = { allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
+export type ContentfulPagesQueryQuery = { allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText', id: string, title?: string | null, text?: { raw?: string | null } | null } | { __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaText2?: string | null, ctaUrl?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
 
 export type ProductPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
