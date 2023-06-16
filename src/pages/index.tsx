@@ -69,11 +69,30 @@ const IndexPage = () => {
           }
         }
       }
+      contentfulHeader {
+        siteTitle
+        navigation {
+          navItem
+          navUrl
+        }
+        headerLogo {
+          gatsbyImageData
+        }
+      }
     }
   `);
 
+  const { siteTitle, navigation, headerLogo } = data.contentfulHeader;
+  const navItems = navigation.map((navItem: any) => {
+    return {
+      navItem: navItem.navItem,
+      navUrl: navItem.navUrl
+    };
+  });
+
   return (
-    <Layout>
+    <Layout siteTitle={siteTitle} navigation={navItems} headerLogo={headerLogo}>
+      <SEO />
       {data.contentfulPages.sections.map((section: any) => {
         switch (section.__typename) {
           case 'ContentfulHero':
@@ -93,5 +112,3 @@ const IndexPage = () => {
 }
 
 export default IndexPage;
-
-export const Head = () => <SEO />

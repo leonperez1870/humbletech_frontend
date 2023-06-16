@@ -22,13 +22,29 @@ interface CollectionTemplateProps extends PageProps {
         };
       };
     }>;
+    header: {
+      siteTitle: string;
+      navigation: Array<{
+        navItem: string;
+        navUrl: string;
+      }>;
+      headerLogo: any;
+    };
   };
 }
 
 const CollectionTemplate: React.FC<CollectionTemplateProps> = ({ pageContext }) => {
-  const { title, descriptionHtml, products } = pageContext;
+  const { title, descriptionHtml, products, header } = pageContext;
+  const { siteTitle, navigation, headerLogo } = header;
+  const navItems = navigation.map(item => ({
+    navItem: item.navItem,
+    navUrl: item.navUrl,
+  }));
+  const logoImage = getImage(headerLogo);
+
   return (
-    <Layout>
+    <Layout siteTitle={siteTitle} navigation={navItems} headerLogo={logoImage}>
+      <SEO title={title} />
       <section className='pt-20 text-center'>
         <h1 className="text-4xl font-bold mb-4">{title}</h1>
         <div
@@ -51,10 +67,9 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({ pageContext }) 
             );
           })}
         </div>
-        </section>
+      </section>
     </Layout>
   );
 };
 
 export default CollectionTemplate;
-export const Head = () => <SEO />

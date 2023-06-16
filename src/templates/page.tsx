@@ -32,14 +32,19 @@ interface NewPageProps extends ContentfulPagesQueryQuery {
       id: string;
       [key: string]: any;
     }[];
+    header: {
+      siteTitle: string;
+      navigation: Array<{ navItem: string; navUrl: string }>;
+      headerLogo: any;
+    };
   };
 }
 
 const Page: React.FC<NewPageProps> = ({ pageContext }) => {
-  const { sections } = pageContext;
+  const { sections, header } = pageContext;
   return (
     <div>
-      <Layout>
+      <Layout siteTitle={header.siteTitle} navigation={header.navigation} headerLogo={header.headerLogo}>
         {sections.map((section, index) => {
           const Component = COMPONENT_MAP[section.__typename];
           const sectionId = section.id ? section.id : index;

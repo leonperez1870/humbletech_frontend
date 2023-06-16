@@ -20,6 +20,11 @@ interface ProductProps extends PageProps {
       id: string;
       storefrontId: string;
     }>;
+    header: {
+      siteTitle: string;
+      navigation: Array<{ navItem: string; navUrl: string }>;
+      headerLogo: any;
+    };
   };
 }
 
@@ -31,7 +36,7 @@ const ProductTemplate: React.FC<ProductProps> = ({ pageContext }) => {
   const image = getImage(pageContext.featuredImage);
 
   return (
-    <Layout>
+    <Layout siteTitle={pageContext.header.siteTitle} navigation={pageContext.header.navigation} headerLogo={pageContext.header.headerLogo}>
       <div className="flex flex-row justify-center items-start pt-16">
         <div className="w-1/2">
           <GatsbyImage image={image} alt={pageContext.title} />
