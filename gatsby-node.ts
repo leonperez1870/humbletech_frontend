@@ -8,6 +8,16 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
   const pageTemplate = path.resolve(`./src/templates/page.tsx`);
   const res: resContentfulType = await graphql(`
     query ContentfulPagesQuery {
+      contentfulHeader {
+        siteTitle,
+        navigation {
+          navItem
+          navUrl
+        }
+        headerLogo {
+          gatsbyImageData
+        }
+      }
       allContentfulPages {
         edges {
           node {
@@ -84,6 +94,7 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
 
   const nodes = res.data?.allContentfulPages.edges;
   const count = nodes.length;
+  const header = res.data?.contentfulHeader;
 
   for (let i = 0; i < count; i++) {
     const { node } = nodes[i];
@@ -97,6 +108,7 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
           id: id,
           title: title,
           sections: sections,
+          header: header
         }
       });
     }
@@ -108,6 +120,16 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
   const pageTemplate = path.resolve('./src/templates/product.tsx');
   const res: resContentfulType = await graphql(`
     query ProductPagesQuery {
+      contentfulHeader {
+        siteTitle,
+        navigation {
+          navItem
+          navUrl
+        }
+        headerLogo {
+          gatsbyImageData
+        }
+      }
       allShopifyProduct {
         edges {
           node {
@@ -134,6 +156,7 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
 
   const nodes = res.data?.allShopifyProduct.edges;
   const count = nodes.length;
+  const header = res.data?.contentfulHeader;
 
   for (let i = 0; i < count; i++) {
     const node = nodes[i].node;
@@ -149,7 +172,8 @@ const createShopifyProductPages = async (args: CreatePagesArgs) => {
           totalInventory: node.totalInventory,
           descriptionHtml: node.descriptionHtml,
           featuredImage: node.featuredImage,
-          variants: node.variants
+          variants: node.variants,
+          header: header
         }
       });
     }
@@ -161,6 +185,16 @@ const createShopifyCollectionPages = async (args: CreatePagesArgs) => {
   const pageTemplate = path.resolve('./src/templates/collection.tsx');
   const res = await graphql(`
     query CollectionPagesQuery {
+      contentfulHeader {
+        siteTitle,
+        navigation {
+          navItem
+          navUrl
+        }
+        headerLogo {
+          gatsbyImageData
+        }
+      }
       allShopifyCollection {
         edges {
           node {
@@ -190,6 +224,7 @@ const createShopifyCollectionPages = async (args: CreatePagesArgs) => {
 
   const nodes = res.data?.allShopifyCollection.edges;
   const count = nodes.length;
+  const header = res.data?.contentfulHeader;
 
   for (let i = 0; i < count; i++) {
     const node = nodes[i].node;
@@ -201,7 +236,8 @@ const createShopifyCollectionPages = async (args: CreatePagesArgs) => {
           title: node.title,
           handle: node.handle,
           descriptionHtml: node.descriptionHtml,
-          products: node.products
+          products: node.products,
+          header: header
         }
       });
     }
