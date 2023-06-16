@@ -1,4 +1,23 @@
 /* src/components/Header.css */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+
+.Header {
+  background-color: $main-brand-color;
+  color: $white;
+
+  &__logo-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    vertical-align: center;
+  }
+
+  a, button {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
