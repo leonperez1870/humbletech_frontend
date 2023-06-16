@@ -1092,6 +1092,102 @@ export type ContentfulFeatureItemSysContentTypeSys = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type ContentfulHeader = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  siteTitle?: Maybe<Scalars['String']>;
+  headerLogo?: Maybe<ContentfulAsset>;
+  navigation?: Maybe<Array<Maybe<ContentfulNavigationItem>>>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulHeaderSys>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulHeaderCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulHeaderUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulHeaderSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulHeaderSysContentType>;
+};
+
+export type ContentfulHeaderSysContentType = {
+  sys?: Maybe<ContentfulHeaderSysContentTypeSys>;
+};
+
+export type ContentfulHeaderSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulNavigationItem = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  navItem?: Maybe<Scalars['String']>;
+  navUrl?: Maybe<Scalars['String']>;
+  header?: Maybe<Array<Maybe<ContentfulHeader>>>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulNavigationItemSys>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulNavigationItemCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulNavigationItemUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulNavigationItemSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulNavigationItemSysContentType>;
+};
+
+export type ContentfulNavigationItemSysContentType = {
+  sys?: Maybe<ContentfulNavigationItemSysContentTypeSys>;
+};
+
+export type ContentfulNavigationItemSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
 export type ShopifyApp = {
   shopifyId: Scalars['String'];
 };
@@ -3121,6 +3217,10 @@ export type Query = {
   allContentfulSeoComponent: ContentfulSeoComponentConnection;
   contentfulFeatureItem?: Maybe<ContentfulFeatureItem>;
   allContentfulFeatureItem: ContentfulFeatureItemConnection;
+  contentfulHeader?: Maybe<ContentfulHeader>;
+  allContentfulHeader: ContentfulHeaderConnection;
+  contentfulNavigationItem?: Maybe<ContentfulNavigationItem>;
+  allContentfulNavigationItem: ContentfulNavigationItemConnection;
   shopifyExternalVideo?: Maybe<ShopifyExternalVideo>;
   allShopifyExternalVideo: ShopifyExternalVideoConnection;
   shopifyMedia?: Maybe<ShopifyMedia>;
@@ -3697,6 +3797,56 @@ export type QueryContentfulFeatureItemArgs = {
 export type QueryAllContentfulFeatureItemArgs = {
   filter?: InputMaybe<ContentfulFeatureItemFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ContentfulFeatureItemSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulHeaderArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  siteTitle?: InputMaybe<StringQueryOperatorInput>;
+  headerLogo?: InputMaybe<ContentfulAssetFilterInput>;
+  navigation?: InputMaybe<ContentfulNavigationItemFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulHeaderSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulHeaderArgs = {
+  filter?: InputMaybe<ContentfulHeaderFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulHeaderSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulNavigationItemArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  navItem?: InputMaybe<StringQueryOperatorInput>;
+  navUrl?: InputMaybe<StringQueryOperatorInput>;
+  header?: InputMaybe<ContentfulHeaderFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulNavigationItemSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulNavigationItemArgs = {
+  filter?: InputMaybe<ContentfulNavigationItemFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulNavigationItemSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -8121,6 +8271,378 @@ export type ContentfulFeatureItemGroupConnectionGroupArgs = {
   field: ContentfulFeatureItemFieldSelector;
 };
 
+export type ContentfulNavigationItemFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulNavigationItemFilterInput>;
+};
+
+export type ContentfulNavigationItemFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  navItem?: InputMaybe<StringQueryOperatorInput>;
+  navUrl?: InputMaybe<StringQueryOperatorInput>;
+  header?: InputMaybe<ContentfulHeaderFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulNavigationItemSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulHeaderFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulHeaderFilterInput>;
+};
+
+export type ContentfulHeaderFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  siteTitle?: InputMaybe<StringQueryOperatorInput>;
+  headerLogo?: InputMaybe<ContentfulAssetFilterInput>;
+  navigation?: InputMaybe<ContentfulNavigationItemFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulHeaderSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulHeaderSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulHeaderSysContentTypeFilterInput>;
+};
+
+export type ContentfulHeaderSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulHeaderSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulHeaderSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulNavigationItemSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulNavigationItemSysContentTypeFilterInput>;
+};
+
+export type ContentfulNavigationItemSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulNavigationItemSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulNavigationItemSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulHeaderConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulHeaderEdge>;
+  nodes: Array<ContentfulHeader>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulHeaderGroupConnection>;
+};
+
+
+export type ContentfulHeaderConnectionDistinctArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderConnectionMaxArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderConnectionMinArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderConnectionSumArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulHeaderFieldSelector;
+};
+
+export type ContentfulHeaderEdge = {
+  next?: Maybe<ContentfulHeader>;
+  node: ContentfulHeader;
+  previous?: Maybe<ContentfulHeader>;
+};
+
+export type ContentfulHeaderFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  siteTitle?: InputMaybe<FieldSelectorEnum>;
+  headerLogo?: InputMaybe<ContentfulAssetFieldSelector>;
+  navigation?: InputMaybe<ContentfulNavigationItemFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulHeaderSysFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulNavigationItemFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  navItem?: InputMaybe<FieldSelectorEnum>;
+  navUrl?: InputMaybe<FieldSelectorEnum>;
+  header?: InputMaybe<ContentfulHeaderFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulNavigationItemSysFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulNavigationItemSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulNavigationItemSysContentTypeFieldSelector>;
+};
+
+export type ContentfulNavigationItemSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulNavigationItemSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulNavigationItemSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulHeaderSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulHeaderSysContentTypeFieldSelector>;
+};
+
+export type ContentfulHeaderSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulHeaderSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulHeaderSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulHeaderGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulHeaderEdge>;
+  nodes: Array<ContentfulHeader>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulHeaderGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulHeaderGroupConnectionDistinctArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderGroupConnectionMaxArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderGroupConnectionMinArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderGroupConnectionSumArgs = {
+  field: ContentfulHeaderFieldSelector;
+};
+
+
+export type ContentfulHeaderGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulHeaderFieldSelector;
+};
+
+export type ContentfulHeaderSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  siteTitle?: InputMaybe<SortOrderEnum>;
+  headerLogo?: InputMaybe<ContentfulAssetSortInput>;
+  navigation?: InputMaybe<ContentfulNavigationItemSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulHeaderSysSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulNavigationItemSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  navItem?: InputMaybe<SortOrderEnum>;
+  navUrl?: InputMaybe<SortOrderEnum>;
+  header?: InputMaybe<ContentfulHeaderSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulNavigationItemSysSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulNavigationItemSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulNavigationItemSysContentTypeSortInput>;
+};
+
+export type ContentfulNavigationItemSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulNavigationItemSysContentTypeSysSortInput>;
+};
+
+export type ContentfulNavigationItemSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulHeaderSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulHeaderSysContentTypeSortInput>;
+};
+
+export type ContentfulHeaderSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulHeaderSysContentTypeSysSortInput>;
+};
+
+export type ContentfulHeaderSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulNavigationItemConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulNavigationItemEdge>;
+  nodes: Array<ContentfulNavigationItem>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulNavigationItemGroupConnection>;
+};
+
+
+export type ContentfulNavigationItemConnectionDistinctArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemConnectionMaxArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemConnectionMinArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemConnectionSumArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+export type ContentfulNavigationItemEdge = {
+  next?: Maybe<ContentfulNavigationItem>;
+  node: ContentfulNavigationItem;
+  previous?: Maybe<ContentfulNavigationItem>;
+};
+
+export type ContentfulNavigationItemGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulNavigationItemEdge>;
+  nodes: Array<ContentfulNavigationItem>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulNavigationItemGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulNavigationItemGroupConnectionDistinctArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemGroupConnectionMaxArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemGroupConnectionMinArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemGroupConnectionSumArgs = {
+  field: ContentfulNavigationItemFieldSelector;
+};
+
+
+export type ContentfulNavigationItemGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulNavigationItemFieldSelector;
+};
+
 export type ShopifyMediaHostQueryOperatorInput = {
   eq?: InputMaybe<ShopifyMediaHost>;
   ne?: InputMaybe<ShopifyMediaHost>;
@@ -10903,7 +11425,7 @@ export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText' } | { __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaUrl?: string | null, ctaText2?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null };
+export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText' } | { __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaUrl?: string | null, ctaText2?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null, contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
@@ -10934,14 +11456,14 @@ export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: num
 export type ContentfulPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ContentfulPagesQueryQuery = { allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText', id: string, title?: string | null, text?: { raw?: string | null } | null } | { __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaText2?: string | null, ctaUrl?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
+export type ContentfulPagesQueryQuery = { contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null, allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText', id: string, title?: string | null, text?: { raw?: string | null } | null } | { __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaText2?: string | null, ctaUrl?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
 
 export type ProductPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductPagesQueryQuery = { allShopifyProduct: { edges: Array<{ node: { id: string, storefrontId: string, title: string, totalInventory: number, descriptionHtml: string, handle: string, featuredImage?: { gatsbyImageData?: any | null } | null, variants: Array<{ price: number, title: string, id: string, storefrontId: string }> } }> } };
+export type ProductPagesQueryQuery = { contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null, allShopifyProduct: { edges: Array<{ node: { id: string, storefrontId: string, title: string, totalInventory: number, descriptionHtml: string, handle: string, featuredImage?: { gatsbyImageData?: any | null } | null, variants: Array<{ price: number, title: string, id: string, storefrontId: string }> } }> } };
 
 export type CollectionPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionPagesQueryQuery = { allShopifyCollection: { edges: Array<{ node: { title: string, handle: string, descriptionHtml: string, products: Array<{ handle: string, title: string, featuredImage?: { gatsbyImageData?: any | null } | null, priceRangeV2: { maxVariantPrice: { amount: number }, minVariantPrice: { amount: number } } }> } }> } };
+export type CollectionPagesQueryQuery = { contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null, allShopifyCollection: { edges: Array<{ node: { title: string, handle: string, descriptionHtml: string, products: Array<{ handle: string, title: string, featuredImage?: { gatsbyImageData?: any | null } | null, priceRangeV2: { maxVariantPrice: { amount: number }, minVariantPrice: { amount: number } } }> } }> } };
