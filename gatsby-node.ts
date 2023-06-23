@@ -40,6 +40,9 @@ const createContentfulPages = async (args: CreatePagesArgs) => {
                 ctaText2
                 ctaUrl
                 ctaUrl2
+                featuredImage {
+                  gatsbyImageData
+                }
                 allowFeatureSection
                 featureSection {
                   featureIcon {

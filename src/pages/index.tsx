@@ -28,6 +28,9 @@ const IndexPage = () => {
             ctaUrl
             ctaText2
             ctaUrl2
+            featuredImage {
+              gatsbyImageData
+            }
             allowFeatureSection
             featureSection {
               featureIcon {
@@ -92,7 +95,6 @@ const IndexPage = () => {
 
   return (
     <Layout siteTitle={siteTitle} navigation={navItems} headerLogo={headerLogo}>
-      <SEO />
       {data.contentfulPages.sections.map((section: any) => {
         switch (section.__typename) {
           case 'ContentfulHero':
@@ -112,3 +114,5 @@ const IndexPage = () => {
 }
 
 export default IndexPage;
+
+export const Head = () => <SEO />;
