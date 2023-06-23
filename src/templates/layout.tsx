@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children, siteTitle, navigation, header
     <div>
       <Header siteTitle={siteTitle} navigation={navigation} headerLogo={headerLogo} toggleCart={toggleCart} />
       <main>{children}</main>
-      {isCartOpen && <ShoppingCart />}
+      <ShoppingCart toggleCart={toggleCart} isCartOpen={isCartOpen} />
       <Footer />
     </div>
   );
