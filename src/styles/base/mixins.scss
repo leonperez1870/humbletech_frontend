@@ -1,18 +1,48 @@
 // Screens
-@mixin mobile() {
-  @media screen and (max-width: 600px) {
+@mixin media($keys...) {
+  @each $key in $keys {
+    @if ($key == sm()) {
+      @include sm() {
+        @content;
+      }
+    } @else if ($key == md()) {
+      @include md() {
+        @content;
+      }
+    } @else if ($key == lg()) {
+      @include lg() {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin sm() {
+  @media screen and (max-width: 640px) {
     @content;
   }
 }
 
-@mixin tablet() {
-  @media screen and (min-width: 601px) and (max-width: 1023px) {
-    @content;
+@mixin md($keys...) {
+  @each $key in $keys {
+    @if ($key == landscape) {
+      @media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+        @content;
+      }
+    } @else if ($key == portrait) {
+      @media screen and (min-width: 641px) and (max-width: 768px) and (orientation: portrait) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: 641px) and (max-width: 1024px) and (orientation: landscape) {
+        @content;
+      }
+    }
   }
 }
 
-@mixin desktop() {
-  @media screen and (min-width: 1024px) {
+@mixin lg() {
+  @media screen and (min-width: 1025px) {
     @content;
   }
 }
