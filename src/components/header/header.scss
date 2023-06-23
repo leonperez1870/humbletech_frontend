@@ -1,8 +1,20 @@
 /* src/components/Header.css */
-
 .Header {
   background-color: $main-brand-color;
   color: $white;
+
+  a, button {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .icon {
+    display: block;
+    width: 45px;
+    height: 45px;
+  }
 
   &__logo-title {
     font-size: 1.5rem;
@@ -14,10 +26,109 @@
     vertical-align: center;
   }
 
-  a, button {
-    color: $white;
+  &__navigation a {
+    font-size: rem-calc(20);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+
     &:hover {
-      text-decoration: none;
+      color: $white;
+    }
+
+    &:hover:before {
+      width: 100%;
+      height: 2px;
+    }
+  }
+
+  &__navigation a:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0%;
+    height: 0px;
+    background-color: $white;
+  }
+
+  &__navigation a.active {
+    color: $white;
+    &:before {
+      width: 100%;
+      height: 2px;
+    }
+  }
+
+  &__mobile-menu button {
+    display: block;
+  }
+
+  @include media(lg()) {
+    &__mobile-menu {
+      display: none;
+    }
+  }
+
+  @include media(sm(), md()) {
+    .mobile-container {
+      width: 100%;
+    }
+
+    &__navigation {
+      position: absolute;
+      background: $white;
+      top: 100%;
+      width: 50vw;
+      height: 100vh;
+      flex-flow: column;
+      padding: rem-calc(20);
+    }
+
+    &__navigation a, 
+    &__navigation button {
+      color: $main-brand-color;
+      font-size: rem-calc(20);
+      text-align: left;
+      padding: 1rem 2rem;
+      display: block;
+      transition: all 0.2s ease-in-out;
+      width: 100%;
+
+      &:hover {
+        color: $main-brand-color;
+      }
+    }
+
+    &__navigation button {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+      margin: 0;
+    }
+
+    &__navigation .icon {
+      background-color: $main-brand-color;
+    }
+
+    &__navigation.menu-open {
+      right: 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &__navigation.menu-close {
+      right: -51vw;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  @include media(md(landscape)) {
+    &__navigation {
+      display: none;
     }
   }
 }
