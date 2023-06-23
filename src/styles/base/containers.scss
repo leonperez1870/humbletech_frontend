@@ -2,19 +2,23 @@
   width: 90%;
   margin: 0 auto;
 
+  &--2xl {
+    max-width: rem-calc(1536);
+  }
+
   &--xl {
-    max-width: rem-calc(1360);
+    max-width: rem-calc(1280);
   }
 
   &--lg {
-    max-width: rem-calc(1160);
-  }
-
-  &--md {
     max-width: rem-calc(1024);
   }
 
+  &--md {
+    max-width: rem-calc(768);
+  }
+
   &--sm {
-    max-width: rem-calc(600);
+    max-width: rem-calc(640);
   }
 }
