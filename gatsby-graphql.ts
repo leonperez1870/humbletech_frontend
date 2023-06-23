@@ -746,6 +746,7 @@ export type ContentfulHero = ContentfulReference & ContentfulEntry & Node & {
   ctaText2?: Maybe<Scalars['String']>;
   ctaUrl2?: Maybe<Scalars['String']>;
   allowFeatureSection?: Maybe<Scalars['Boolean']>;
+  featuredImage?: Maybe<ContentfulAsset>;
   featureSection?: Maybe<Array<Maybe<ContentfulFeatureItem>>>;
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -3623,6 +3624,7 @@ export type QueryContentfulHeroArgs = {
   ctaText2?: InputMaybe<StringQueryOperatorInput>;
   ctaUrl2?: InputMaybe<StringQueryOperatorInput>;
   allowFeatureSection?: InputMaybe<BooleanQueryOperatorInput>;
+  featuredImage?: InputMaybe<ContentfulAssetFilterInput>;
   featureSection?: InputMaybe<ContentfulFeatureItemFilterListInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -6796,6 +6798,7 @@ export type ContentfulHeroFilterInput = {
   ctaText2?: InputMaybe<StringQueryOperatorInput>;
   ctaUrl2?: InputMaybe<StringQueryOperatorInput>;
   allowFeatureSection?: InputMaybe<BooleanQueryOperatorInput>;
+  featuredImage?: InputMaybe<ContentfulAssetFilterInput>;
   featureSection?: InputMaybe<ContentfulFeatureItemFilterListInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -6869,6 +6872,7 @@ export type ContentfulHeroFieldSelector = {
   ctaText2?: InputMaybe<FieldSelectorEnum>;
   ctaUrl2?: InputMaybe<FieldSelectorEnum>;
   allowFeatureSection?: InputMaybe<FieldSelectorEnum>;
+  featuredImage?: InputMaybe<ContentfulAssetFieldSelector>;
   featureSection?: InputMaybe<ContentfulFeatureItemFieldSelector>;
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
@@ -7035,6 +7039,7 @@ export type ContentfulHeroSortInput = {
   ctaText2?: InputMaybe<SortOrderEnum>;
   ctaUrl2?: InputMaybe<SortOrderEnum>;
   allowFeatureSection?: InputMaybe<SortOrderEnum>;
+  featuredImage?: InputMaybe<ContentfulAssetSortInput>;
   featureSection?: InputMaybe<ContentfulFeatureItemSortInput>;
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
@@ -11425,7 +11430,7 @@ export type SeoQueryQuery = { contentfulSeoComponent?: { openGraphDescription?: 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText' } | { __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaUrl?: string | null, ctaText2?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null, contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null };
+export type HomePageQueryQuery = { contentfulPages?: { title?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText' } | { __typename: 'ContentfulContactUsSection', id: string, contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', id: string, title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaUrl?: string | null, ctaText2?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featuredImage?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, sectionHeading?: string | null, sectionSubHeading?: string | null, imageOnRight?: boolean | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } | null, contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
@@ -11456,7 +11461,7 @@ export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: num
 export type ContentfulPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ContentfulPagesQueryQuery = { contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null, allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText', id: string, title?: string | null, text?: { raw?: string | null } | null } | { __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaText2?: string | null, ctaUrl?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
+export type ContentfulPagesQueryQuery = { contentfulHeader?: { siteTitle?: string | null, navigation?: Array<{ navItem?: string | null, navUrl?: string | null } | null> | null, headerLogo?: { gatsbyImageData?: any | null } | null } | null, allContentfulPages: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null, sections?: Array<{ __typename: 'ContentfulComponentText', id: string, title?: string | null, text?: { raw?: string | null } | null } | { __typename: 'ContentfulContactUsSection', contactSectionHeading?: string | null, contactSectionSubHeading?: { contactSectionSubHeading?: string | null } | null } | { __typename: 'ContentfulFaqSection', title?: string | null, faqItems?: Array<{ question?: string | null, answer?: { answer?: string | null } | null } | null> | null } | { __typename: 'ContentfulHero', id: string, heading?: string | null, subHeading?: string | null, ctaText?: string | null, ctaText2?: string | null, ctaUrl?: string | null, ctaUrl2?: string | null, allowFeatureSection?: boolean | null, backgroundImageDesktop?: { gatsbyImageData?: any | null } | null, backgroundImageMobile?: { gatsbyImageData?: any | null } | null, featuredImage?: { gatsbyImageData?: any | null } | null, featureSection?: Array<{ heading?: string | null, ctaText?: string | null, ctaUrl?: string | null, featureIcon?: { gatsbyImageData?: any | null } | null, subheading?: { subheading?: string | null } | null } | null> | null } | { __typename: 'ContentfulImageWithText', id: string, imageOnRight?: boolean | null, sectionHeading?: string | null, sectionSubHeading?: string | null, spaceId?: string | null, sectionImage?: { gatsbyImageData?: any | null } | null } | null> | null } }> } };
 
 export type ProductPagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
