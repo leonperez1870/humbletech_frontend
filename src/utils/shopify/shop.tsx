@@ -2,15 +2,33 @@ import React, { createContext, useState, useEffect } from "react";
 import Client from 'shopify-buy';
 
 // Interfaces
+interface PriceV2 {
+  amount: string;
+  currencyCode: string;
+}
+
+interface Variant {
+  id: string;
+  title: string;
+  priceV2: PriceV2;
+  immage?: {
+    src: string;
+  };
+}
+
 interface LineItem {
-  variantId: string;
+  id: string;
+  title: string;
   quantity: number;
+  variant: Variant;
 }
 
 interface Checkout {
   id: string;
   completedAt?: string;
   lineItems: LineItem[];
+  totalPriceV2: PriceV2;
+  webUrl: string;
 }
 
 interface ClientType extends Client {
@@ -32,6 +50,7 @@ interface ShopContextProps {
   removeProductFromCart: (id: string) => void;
   applyCoupon: (coupon: string) => void;
   removeCoupon: (coupon: string) => void;
+  isLoading: boolean;
 }
 
 interface ShopifyProviderProps {
@@ -51,12 +70,18 @@ const defaultValues: ShopContextProps = {
   checkout: {
     lineItems: [],
     id: '',
+    totalPriceV2: {
+      amount: '0',
+      currencyCode: 'USD',
+    },
+    webUrl: '',
   },
   coupon: '',
   addProductToCart: () => {},
   removeProductFromCart: () => {},
   applyCoupon: () => {},
   removeCoupon: () => {},
+  isLoading: false,
 };
 
 // Context
@@ -66,13 +91,17 @@ export const ShopContext = createContext<ShopContextProps>(defaultValues);
 export const ShopifyProvider: React.FC<ShopifyProviderProps> = ({ children }) => {
   const [checkout, setCheckout] = useState<Checkout>(defaultValues.checkout);
   const [coupon, setCoupon] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleCheckout = async (callback: (checkoutId: string) => Promise<Checkout>) => {
+    setLoading(true);
     try {
       const newCheckout = await callback(checkout.id);
       setCheckout(newCheckout);
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -96,25 +125,42 @@ export const ShopifyProvider: React.FC<ShopifyProviderProps> = ({ children }) =>
 
   useEffect(() => {
     const initializeCheckout = async () => {
+      setLoading(true);
       if (typeof window !== 'undefined') {
+        let newCheckout: Checkout | null = null;
         const checkoutId = localStorage.getItem('checkout_id');
-        let newCheckout = null;
-  
+    
         if (checkoutId) {
-          newCheckout = await client.checkout.fetch(checkoutId);
-          if (newCheckout.completedAt) {
-            newCheckout = await client.checkout.create();
+          try {
+            const fetchedCheckout = await client.checkout.fetch(checkoutId);
+            if (!fetchedCheckout.completedAt) {
+              newCheckout = {
+                id: fetchedCheckout.id,
+                completedAt: fetchedCheckout.completedAt,
+                lineItems: fetchedCheckout.lineItems,
+                totalPriceV2: fetchedCheckout.totalPriceV2,
+                webUrl: fetchedCheckout.webUrl,
+              };
+            }
+          } catch (error) {
+            console.error(error);
           }
-        } else {
+        }
+    
+        if (!newCheckout) {
           newCheckout = await client.checkout.create();
         }
-        localStorage.setItem('checkout_id', newCheckout.id);
-        setCheckout(newCheckout);
+    
+        if (newCheckout) {
+          localStorage.setItem('checkout_id', newCheckout.id);
+          setCheckout(newCheckout);
+        }
       }
-    };
-  
+      setLoading(false);
+    };    
+
     initializeCheckout();
-  }, []);  
+  }, []);
 
   return (
     <ShopContext.Provider
@@ -126,6 +172,7 @@ export const ShopifyProvider: React.FC<ShopifyProviderProps> = ({ children }) =>
         removeProductFromCart,
         applyCoupon,
         removeCoupon,
+        isLoading: loading,
       }}
     >
       {children}
