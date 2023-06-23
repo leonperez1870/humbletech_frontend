@@ -44,7 +44,6 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({ pageContext }) 
 
   return (
     <Layout siteTitle={siteTitle} navigation={navItems} headerLogo={logoImage}>
-      <SEO title={title} />
       <section className='pt-20 text-center'>
         <h1 className="text-4xl font-bold mb-4">{title}</h1>
         <div
@@ -73,3 +72,5 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({ pageContext }) 
 };
 
 export default CollectionTemplate;
+
+export const Head = () => <SEO title="Collection" />;
